@@ -13,7 +13,15 @@ module.exports = {
   // content: ["./app/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        satoshiBold: ["Satoshi-Bold"],
+      },
+      colors:{
+        darkYellow:'#FFC107',
+        paleYellow:'#FEF9C3'
+      }
+    },
   },
   plugins: [],
 };

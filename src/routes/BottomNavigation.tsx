@@ -72,9 +72,9 @@ export const BottomNavigation = () => {
           name="Profile"
           component={Profile}
           options={{
-            tabBarLabel: "Profile",
+            tabBarLabel: "Task",
             tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="user-circle" size={size} color={color} />
+              <Feather name="folder-minus" size={24} color={color} />
             ),
             tabBarButton: (props) => <CustomTabButton {...props} />,
           }}
@@ -84,7 +84,7 @@ export const BottomNavigation = () => {
           name="Restaurant Order"
           component={RestaurantOrder}
           options={{
-            tabBarLabel: "Profile",
+            tabBarLabel: "Schedule",
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user-circle" size={size} color={color} />
             ),

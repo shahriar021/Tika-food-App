@@ -59,7 +59,8 @@
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
     "sonner-native": "^0.17.0",
-    "victory-native": "^37.3.6"
+    "victory-native": "^37.3.6",
+    "expo-font": "~13.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

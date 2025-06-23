@@ -6,6 +6,4 @@
 - nativewind and tailwindcss: used instead of Stylesheet.create
 - redux toolkit: Used for central state management and RTQ Query
 - expo-image-picker: Used for accessing camera and gallery media
-- expo-location: used for fetching device current location
-- react-native-maps: used for showing google maps
 - expo-dev-client: used for building and testing app on actual device

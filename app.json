@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Restaurant",
-    "slug": "Restaurant",
+    "name": "Readiness",
+    "slug": "Readiness",
     "version": "1.2.34",
     "orientation": "portrait",
     "icon": "./assets/restroIcon.png",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/restroIcon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#396E4E"
     },
     "ios": {
       "supportsTablet": true,
@@ -22,9 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        
-      ],
+      "permissions": [],
       "useNextNotificationsApi": true,
       "package": "com.smartsoftware.sas",
       "config": {
@@ -43,7 +41,6 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ],
-      
       [
         "expo-document-picker",
         {
@@ -58,7 +55,8 @@
             "composeCompilerVersion": "1.5.14"
           }
         }
-      ]
+      ],
+      "expo-font"
     ],
     "extra": {
       "eas": {
