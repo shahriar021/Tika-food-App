@@ -48,7 +48,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         }}
       >
         <Stack.Screen
-          name="DrawerScreen"
+          name="BottomScreen"
           component={BottomNavigation}
           options={{
             headerShown: false,

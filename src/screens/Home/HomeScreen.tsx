@@ -58,22 +58,7 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
     }
   }
 
-  const [fontsLoaded, setFontsLoaded] = React.useState(false);
 
-  const loadFonts = async () => {
-    await Font.loadAsync({
-      "Satoshi-Bold": require("../../../assets/fonts/Satoshi-Bold.ttf"),
-    });
-    setFontsLoaded(true);
-  };
-
-  React.useEffect(() => {
-    loadFonts();
-  }, []);
-
-  if (!fontsLoaded) {
-    return null; // or <AppLoading />
-  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

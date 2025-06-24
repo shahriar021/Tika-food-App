@@ -4,7 +4,7 @@ import { DrawerNavigation } from "./DrawerNavigation";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import NavRight from "src/components/shared/NavRight";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Profile, RestaurantOrder } from "src/screens";
+import { HomeScreen, Profile, RestaurantOrder } from "src/screens";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -56,8 +56,8 @@ export const BottomNavigation = () => {
         }}
       >
         <BottomTabs.Screen
-          name="DrawerScreen"
-          component={DrawerNavigation}
+          name="Home"
+          component={HomeScreen}
           options={{
             headerShown: false,
             tabBarLabel: "Home",
