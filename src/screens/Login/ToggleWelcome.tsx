@@ -7,8 +7,7 @@ import { useAppSelector } from "src/redux/hooks";
 const ToggleWelcome = () => {
   const company = useAppSelector((state) => state.auth.BASE_URL);
   return (
-    <View className="flex-1">
-      {company ? <LoginScreen /> : <WelcomeScreen />}
+    <View className="flex-1"> <LoginScreen />
     </View>
   );
 };

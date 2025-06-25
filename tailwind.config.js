@@ -16,6 +16,7 @@ module.exports = {
     extend: {
       fontFamily: {
         satoshiBold: ["Satoshi-Bold"],
+        robotoBold:['Roboto-Bold']
       },
       colors:{
         darkYellow:'#FFC107',

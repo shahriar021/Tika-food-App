@@ -4,13 +4,13 @@
     "slug": "Tika Food",
     "version": "1.2.34",
     "orientation": "portrait",
-    "icon": "./assets/restroIcon.png",
+    "icon": "./assets/tika.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/restroIcon.png",
+      "image": "./assets/tika.png",
       "resizeMode": "contain",
-      "backgroundColor": "#396E4E"
+      "backgroundColor": "#B42315"
     },
     "ios": {
       "supportsTablet": true,

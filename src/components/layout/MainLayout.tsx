@@ -10,19 +10,9 @@ import ToggleWelcome from "src/screens/Login/ToggleWelcome";
 
 const MainLayout = () => {
   // const token = useAppSelector((state) => state.auth.user?.access_token);
-  const token =1;
+  const token =0;
   const [, setCurrentScreen] = useState("");
-  const [isSplashVisible, setIsSplashVisible] = useState(true);
-
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      setIsSplashVisible(false);
-    }, 3000);
-  }, []);
-
-  if (isSplashVisible) {
-    return <SplashScreen />;
-  }
+  
   return (
     <View style={{ flex: 1 }}>
       <StatusBar style="dark" />
