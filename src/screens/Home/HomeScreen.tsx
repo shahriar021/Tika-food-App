@@ -11,7 +11,6 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import TopSection from "../../components/ui/homepage/TopSection";
 import { dashboardData } from "src/constants/dashboardData";
-import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign, Fontisto, Ionicons } from "@expo/vector-icons";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import * as Font from "expo-font";
