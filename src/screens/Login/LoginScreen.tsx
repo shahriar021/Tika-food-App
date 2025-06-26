@@ -17,6 +17,7 @@ import { setUser } from "src/redux/features/auth/authSlice";
 import { useLoginMutation } from "src/redux/features/auth/authApi";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
   const { height, width } = useWindowDimensions();
@@ -24,6 +25,8 @@ const LoginScreen = () => {
   const [postLogin] = useLoginMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigation = useNavigation()
 
   const dispatch = useDispatch();
 
@@ -52,6 +55,10 @@ const LoginScreen = () => {
 
   if (!fontsLoaded) return null; 
 
+  const handleVerify=()=>{
+    navigation.navigate("VerifyEmail")
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-[#B42315] items-center">
       <View style={{width:width * 0.5,height:height*0.3}} className="items-center">
@@ -76,7 +83,10 @@ const LoginScreen = () => {
           <TextInput className="border rounded-xl mt-1 border-gray-300 mb-1 p-3"/>
 
           <Text className="mt-1 mb-1">Password</Text>
-         <View className="flex-row border border-gray-300 rounded-xl items-center px-3"> <TextInput className="flex-1 py-3"/><Feather name="eye-off" size={24} color="gray" /></View>
+         <View className="flex-row border border-gray-300 rounded-xl items-center px-3">
+           <TextInput className="flex-1 py-3"/>
+           <Text><Feather name="eye-off" size={24} color="gray" /></Text>
+           </View>
          <View className="mt-3 flex-row items-center justify-between">
           <View className="flex-row items-center gap-2">
           <TouchableOpacity>
@@ -118,11 +128,15 @@ const LoginScreen = () => {
           <TextInput className="border rounded-xl mt-1 border-gray-300 mb-1 p-3"/>
 
           <Text className="mt-1 mb-1">Password</Text>
-         <View className="flex-row border border-gray-300 rounded-xl items-center px-3"> <TextInput className="flex-1 py-3"/><Feather name="eye-off" size={24} color="gray" /></View>
+         <View className="flex-row border border-gray-300 rounded-xl items-center px-3"> 
+          <TextInput className="flex-1 py-3"/><Feather name="eye-off" size={24} color="gray" />
+         </View>
          <View className="mt-3 flex-row items-center justify-between">
           <View className="flex-row items-center gap-2">
           <TouchableOpacity>
+            <Text>
             <Entypo name="circle" size={24} color="gray" />
+            </Text>
           </TouchableOpacity>
           <Text>Remember Me</Text>
           </View>
@@ -130,13 +144,18 @@ const LoginScreen = () => {
          </View>
 
         <View className="items-center">
-         <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }}>
+         <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={handleVerify}>
           <LinearGradient colors={["#DD0F14","#C21A1E"]} style={{ width, borderRadius: 999, alignItems: "center" }}>
           <Text className="text-white p-3 ">Verify Email</Text>
           </LinearGradient>
          </TouchableOpacity>
          </View>
-         <Text className="text-center mt-4">Already have an account? <TouchableOpacity onPress={()=>setIsSignIn(true)}><Text className="text-[#B42315]">Log In</Text></TouchableOpacity></Text>
+         <View className="flex-row items-center mt-4 gap-2 justify-center"><Text className="text-center ">Already have an account?</Text>
+         
+           <TouchableOpacity onPress={()=>setIsSignIn(true)}><Text className="text-[#B42315]">Log In</Text>
+           
+         </TouchableOpacity>
+         </View>
         </ScrollView>}
       </View>
     </SafeAreaView>
