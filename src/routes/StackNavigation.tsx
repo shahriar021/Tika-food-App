@@ -13,7 +13,7 @@ import {
   OrderList,
   Kitchen,
 } from "src/screens";
-import { DrawerNavigation } from "./DrawerNavigation";
+import VerifyEmailPage from "src/screens/Login/VerifyEmailPage";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -21,18 +21,18 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
   const navigationRef = useRef<any>(null);
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={() => {
-        routeNameRef.current = navigationRef.current.getCurrentRoute().name;
-        setCurrentScreen(routeNameRef.current);
-      }}
-      onStateChange={() => {
-        const currentRouteName = navigationRef.current.getCurrentRoute().name;
-        setCurrentScreen(currentRouteName);
-        routeNameRef.current = currentRouteName;
-      }}
-    >
+    // <NavigationContainer
+    //   ref={navigationRef}
+    //   onReady={() => {
+    //     routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+    //     setCurrentScreen(routeNameRef.current);
+    //   }}
+    //   onStateChange={() => {
+    //     const currentRouteName = navigationRef.current.getCurrentRoute().name;
+    //     setCurrentScreen(currentRouteName);
+    //     routeNameRef.current = currentRouteName;
+    //   }}
+    // >
       <Stack.Navigator
         screenOptions={{
           cardStyle: {
@@ -55,6 +55,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
           }}
         />
         {/* <Stack.Screen name="Notification" component={} /> */}
+         <Stack.Screen name="VerifyEmail" component={VerifyEmailPage} />
         <Stack.Screen name="Restaurant Order" component={RestaurantOrder} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Log in" component={LoginScreen} />
@@ -64,7 +65,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         <Stack.Screen name="Order List" component={OrderList} />
         <Stack.Screen name="Kitchen" component={Kitchen} />
       </Stack.Navigator>
-    </NavigationContainer>
+    // </NavigationContainer>
   );
 };
 
