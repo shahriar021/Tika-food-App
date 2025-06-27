@@ -13,7 +13,8 @@ import {
   OrderList,
   Kitchen,
 } from "src/screens";
-import VerifyEmailPage from "src/screens/Login/VerifyEmailPage";
+import VerifyEmailPage from "src/screens/Auth/VerifyEmailPage";
+import OTPScreen from "src/screens/Auth/OTPScreen";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -55,7 +56,6 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
           }}
         />
         {/* <Stack.Screen name="Notification" component={} /> */}
-         <Stack.Screen name="VerifyEmail" component={VerifyEmailPage} />
         <Stack.Screen name="Restaurant Order" component={RestaurantOrder} />
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Log in" component={LoginScreen} />

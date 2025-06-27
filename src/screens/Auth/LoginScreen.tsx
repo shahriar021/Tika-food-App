@@ -56,7 +56,7 @@ const LoginScreen = () => {
   if (!fontsLoaded) return null; 
 
   const handleVerify=()=>{
-    navigation.navigate("VerifyEmail")
+    navigation.navigate("VerifyEmail" as never)
   }
 
   return (

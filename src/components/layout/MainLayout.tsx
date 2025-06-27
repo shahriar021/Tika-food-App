@@ -5,7 +5,7 @@ import StackNavigation from "src/routes/StackNavigation";
 import SplashScreen from "../ui/splashScreen/SplashScreen";
 import { LoginScreen } from "src/screens";
 import { useAppSelector } from "src/redux/hooks";
-import VerifyEmailPage from "src/screens/Login/VerifyEmailPage";
+import VerifyEmailPage from "src/screens/Auth/VerifyEmailPage";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthStack from "src/routes/AuthStack";
 

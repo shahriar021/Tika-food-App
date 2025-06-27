@@ -1,6 +1,6 @@
 export {default as RestaurantOrder} from "../screens/Restaurant/RestaurantOrder"
 export {default as Profile} from "../screens/Profile/Profile"
-export {default as LoginScreen} from "../screens/Login/LoginScreen"
+export {default as LoginScreen} from "./Auth/LoginScreen"
 export {default as HomeScreen} from "../screens/Home/HomeScreen"
 export {default as OrderThroughTable} from "../screens/Restaurant/OrderThroughTable"
 export {default as OrderSubmitForm} from "../screens/Restaurant/OrderSubmitForm"
