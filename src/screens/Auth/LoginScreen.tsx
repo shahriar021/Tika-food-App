@@ -98,7 +98,7 @@ const LoginScreen = () => {
          </View>
 
           <View className="items-center">
-         <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }}>
+         <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={()=>navigation.navigate("Forget Password" as never)}>
           <LinearGradient colors={["#DD0F14","#C21A1E"]} style={{ width, borderRadius: 999, alignItems: "center" }}>
           <Text className="text-white p-3 ">Sign In</Text>
           </LinearGradient>

@@ -20,11 +20,11 @@ const VerifyEmailPage = () => {
 
 
       headerLeft: () => (
-         <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
-                    <View className='w-[35px] h-[35px] border border-red-100 items-center justify-center rounded-full'>
-                        <Entypo name="chevron-small-left" size={24} color="red" />
-                    </View>
-                </TouchableOpacity>
+        <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
+          <View className='w-[35px] h-[35px] border border-red-100 items-center justify-center rounded-full'>
+            <Entypo name="chevron-small-left" size={24} color="red" />
+          </View>
+        </TouchableOpacity>
       )
 
     });

@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 
-const OTPScreen = () => {
+const LoginOTPScreen = () => {
   const { width, height } = useWindowDimensions();
   const navigation = useNavigation();
 
@@ -31,14 +31,14 @@ const OTPScreen = () => {
     }
   };
 
-  const handleVerify = () => {
+  const handleVerify = () => { 
     const code = otpNumbers.join('');
-    navigation.navigate("OTP Screen" as never);
+    navigation.navigate("Reset Password" as never);
   };
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Verify your email",
+      title: "OTP Verification ",
       headerStyle: { backgroundColor: "white" },
       headerTintColor: "black",
       headerTitleAlign: "center",
@@ -53,10 +53,11 @@ const OTPScreen = () => {
   }, [navigation]);
 
   return (
-    <View className='flex-1 items-center justify-center'>
-      <Text className='font-robotoBold text-xl mb-2'>Enter OTP</Text>
+    <View className='flex-1 items-center  px-2'>
+      <Text className='font-robotoBold text-xl mb-2 text-red-700 mt-2'>Verify Your Identity</Text>
       <Text className='text-center text-gray-500'>
-       {` We have just sent you a 4-digit code \n via your email.`}
+       {` 
+For your security, verify the code sent to your registered contact. \n Let’s confirm it’s you!`}
       </Text>
 
       <View className='flex-row gap-5 mt-3 mb-2'>
@@ -84,16 +85,16 @@ const OTPScreen = () => {
             colors={["#DD0F14", "#C21A1E"]}
             style={{ width, borderRadius: 999, alignItems: "center" }}
           >
-            <Text className="text-white p-3">Verify</Text>
+            <Text className="text-white p-3">Confirm</Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>
 
       <Text className='text-gray-500'>
-        Didn't receive code?<Text className='text-red-800'> Resend Code</Text>
+        Resend Code in <Text className='text-red-800'> 53</Text>s
       </Text>
     </View>
   );
 };
 
-export default OTPScreen;
+export default LoginOTPScreen;
