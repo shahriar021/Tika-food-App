@@ -54,7 +54,8 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
           <AntDesign name="search1" size={24} color="gray" />
           <TextInput className="flex-1" placeholder="Seach for restaurants or dishes..." />
         </View>
-        <View className="flex-row justify-between items-center mt-2 mb-2">
+       <ScrollView contentContainerStyle={{paddingBottom:200}} showsVerticalScrollIndicator={false}>
+         <View className="flex-row justify-between items-center mt-2 mb-2">
           <Text className="text-2xl font-bold">Nearby Restaurants</Text>
           <TouchableOpacity className="flex-row items-center ">
             <Text className="text-red-700">View All</Text>
@@ -207,6 +208,7 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
 
 
         </ScrollView>
+       </ScrollView>
       </View>
     </SafeAreaView>
   );
