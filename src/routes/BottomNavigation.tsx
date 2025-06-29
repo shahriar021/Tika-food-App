@@ -1,109 +1,105 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { DrawerNavigation } from "./DrawerNavigation";
-import { Feather, FontAwesome } from "@expo/vector-icons";
-import NavRight from "src/components/shared/NavRight";
-import { View, Text, TouchableOpacity } from "react-native";
-import { HomeScreen, Profile, RestaurantOrder } from "src/screens";
+import { EvilIcons, Feather, FontAwesome } from "@expo/vector-icons";
+import { View, Text, Platform, useWindowDimensions } from "react-native";
+import { HomeScreen } from "src/screens";
 
 const BottomTabs = createBottomTabNavigator();
 
-const CustomTabButton = ({ children, onPress, accessibilityState }:any) => {
-  const focused = accessibilityState.selected;
-
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      activeOpacity={1}
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius:10,
-        borderTopWidth: focused ? 5 : 0,
-        borderTopColor: focused ? "#08692C" : "transparent",
-        backgroundColor: "white",
-      }}
-    >
-      {children}
-    </TouchableOpacity>
-  );
-};
+const ACTIVE_BG_COLOR = "#c21a1e";
+const INACTIVE_ICON_COLOR = "#c21a1e";
+const ACTIVE_ICON_COLOR = "#fff";
 
 export const BottomNavigation = () => {
+  const { width } = useWindowDimensions();
+
   return (
-    <View style={{ flex: 1, backgroundColor: "transparent" }}>
-      <BottomTabs.Navigator
-        screenOptions={{
-          tabBarStyle: {
-            paddingBottom: 7,
-            
-            height: 68,
-            backgroundColor: "white",
-          },
-          tabBarLabelStyle: {
-            fontSize: 12,
-          },
-          tabBarActiveTintColor: "#08692C",
-          tabBarInactiveTintColor: "black",
-          headerStyle: {
-            elevation: 0,
-            shadowOpacity: 0,
-            borderBottomWidth: 0,
-          },
-          headerTintColor: "#08692C",
-          headerRight: () => <NavRight />,
-        }}
-      >
-        <BottomTabs.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-            tabBarLabel: "Home",
-            tabBarIcon: ({ color, size }) => (
-              <Feather name="home" size={size} color={color} />
-            ),
-            tabBarButton: (props) => <CustomTabButton {...props} />,
-          }}
-        />
+    <BottomTabs.Navigator
+      screenOptions={({ route }) => ({
+        tabBarStyle: {
+          height: 68,
+          paddingBottom: 7,
+          paddingTop: 17,
+          paddingHorizontal: 5,
+          backgroundColor: "#F7F7F7",
+          borderTopWidth: 0,
+          elevation: 0,
+          marginHorizontal: 17,
+          borderRadius: 60,
+          marginBottom: Platform.OS === "android" ? 10 : 16,
+        },
+        tabBarItemStyle: {
+          width: "25%", // even spacing for 4 tabs
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        tabBarShowLabel: false,
+        tabBarIcon: ({ focused, size }) => {
+          let iconName = "circle";
+          let IconComponent = Feather;
 
-        <BottomTabs.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            tabBarLabel: "Task",
-            tabBarIcon: ({ color, size }) => (
-              <Feather name="folder-minus" size={24} color={color} />
-            ),
-            tabBarButton: (props) => <CustomTabButton {...props} />,
-          }}
-        />
+          if (route.name === "Home") iconName = "home";
+          else if (route.name === "Cart") {
+            iconName = "cart";
+            IconComponent = EvilIcons;
+          }
 
-        <BottomTabs.Screen
-          name="Restaurant Order"
-          component={RestaurantOrder}
-          options={{
-            tabBarLabel: "Schedule",
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="user-circle" size={size} color={color} />
-            ),
-            tabBarButton: (props) => <CustomTabButton {...props} />,
-          }}
-        />
+          else if (route.name === "My Orders") {
+            iconName = "user-circle";
+            IconComponent = FontAwesome;
+          } else if (route.name === "Profile") {
+            iconName = "user-circle";
+            IconComponent = FontAwesome;
+          }
 
-        <BottomTabs.Screen
-          name="Profile4"
-          component={Profile}
-          options={{
-            tabBarLabel: "Profile",
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="user-circle" size={size} color={color} />
-            ),
-            tabBarButton: (props) => <CustomTabButton {...props} />,
-          }}
-        />
-      </BottomTabs.Navigator>
-    </View>
+          if (focused) {
+            return (
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: ACTIVE_BG_COLOR,
+                  paddingHorizontal: 12,
+                  paddingVertical: 8,
+                  borderRadius: 30,
+                  minWidth: 90,
+                  minHeight: 50       ,
+                  flexShrink: 1,        // 🧠 allow shrinking to fit small screens
+    maxWidth: width * 0.7        
+                }}
+              >
+                <IconComponent name={iconName} size={14} color={ACTIVE_ICON_COLOR} />
+                <Text
+                  numberOfLines={1}
+                  style={{
+                    color: ACTIVE_ICON_COLOR,
+                    marginLeft: 8,
+                    fontWeight: "600",
+                    fontSize: width > 450 ? 14 : 12,
+                    flexShrink: 1,
+                  }}
+                >
+                  {route.name === "Profile"
+                    ? "Profile"
+                    : route.name === "Restaurant Order"
+                    ? "Schedule"
+                    : route.name}
+                </Text>
+              </View>
+            );
+          } else {
+            return (
+              <IconComponent name={iconName} size={size} color={INACTIVE_ICON_COLOR} />
+            );
+          }
+        },
+      })}
+    >
+      <BottomTabs.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
+      <BottomTabs.Screen name="Cart" component={() => <View />} />
+      <BottomTabs.Screen name="My Orders" component={() => <View />} />
+      <BottomTabs.Screen name="Profile" component={() => <View />} />
+    </BottomTabs.Navigator>
   );
 };

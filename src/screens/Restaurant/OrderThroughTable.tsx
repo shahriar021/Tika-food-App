@@ -172,10 +172,8 @@ const OrderThroughTable = ({ navigation }: any) => {
         ) : (
           <View className="flex-1 items-center justify-center">
             <View className="items-center justify-center w-[200px] h-[200px] mt-20">
-              <Image
-                source={require("../../../assets/empty-cart.png")}
-                style={{ width: "100%", height: "100%" }}
-              />
+              
+              
             </View>
           </View>
         )}
