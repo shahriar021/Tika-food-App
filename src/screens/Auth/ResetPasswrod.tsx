@@ -10,21 +10,21 @@ const ResetPassword = () => {
 
     const navigation = useNavigation()
 
-    useLayoutEffect(()=>{
+    useLayoutEffect(() => {
         navigation.setOptions({
-            title : "Reset Password",
+            title: "Reset Password",
             headerStyle: { backgroundColor: "white" },
-      headerTintColor: "black",
-      headerTitleAlign: "center",
-      headerLeft: () => (
-        <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
-          <View className='w-[35px] h-[35px] border border-red-100 items-center justify-center rounded-full'>
-            <Entypo name="chevron-small-left" size={24} color="red" />
-          </View>
-        </TouchableOpacity>
-      )
+            headerTintColor: "black",
+            headerTitleAlign: "center",
+            headerLeft: () => (
+                <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
+                    <View className='w-[35px] h-[35px] border border-red-100 items-center justify-center rounded-full'>
+                        <Entypo name="chevron-small-left" size={24} color="red" />
+                    </View>
+                </TouchableOpacity>
+            )
         })
-    },[navigation])
+    }, [navigation])
 
     const [fontsLoaded] = useFonts({
         'Roboto-Bold': require('../../../assets/fonts/Roboto-Bold.ttf'),
@@ -41,18 +41,18 @@ const ResetPassword = () => {
             <Text className='text-center text-gray-700'>
                 Create a new password to secure your account.</Text>
 
-                <View className=' ' style={{width:width * 0.9}}>
-                    <Text className='mb-2 mt-3 text-gray-700'>Enter new password</Text>
-                    <View className=' w-full flex-row border border-gray-500 p-2 rounded-xl'>
-                        <TextInput className='flex-1'/>
-                        <Text><Feather name="eye-off" size={24} color="gray" /></Text>
-                    </View>
-                    <Text className='mb-2 mt-3 text-gray-700'>Confirm password</Text>
-                    <View className=' w-full flex-row border border-gray-500 p-2 rounded-xl'>
-                        <TextInput className='flex-1'/>
-                        <Text><Feather name="eye-off" size={24} color="gray" /></Text>
-                    </View>
+            <View className=' ' style={{ width: width * 0.9 }}>
+                <Text className='mb-2 mt-3 text-gray-700'>Enter new password</Text>
+                <View className=' w-full flex-row border border-gray-500 p-2 rounded-xl'>
+                    <TextInput className='flex-1' />
+                    <Text><Feather name="eye-off" size={24} color="gray" /></Text>
                 </View>
+                <Text className='mb-2 mt-3 text-gray-700'>Confirm password</Text>
+                <View className=' w-full flex-row border border-gray-500 p-2 rounded-xl'>
+                    <TextInput className='flex-1' />
+                    <Text><Feather name="eye-off" size={24} color="gray" /></Text>
+                </View>
+            </View>
             <View className="items-center mb-2">
                 <TouchableOpacity
                     className="items-center mt-3 rounded-full overflow-hidden"
