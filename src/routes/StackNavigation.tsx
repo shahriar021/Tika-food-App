@@ -22,18 +22,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
   const navigationRef = useRef<any>(null);
 
   return (
-    // <NavigationContainer
-    //   ref={navigationRef}
-    //   onReady={() => {
-    //     routeNameRef.current = navigationRef.current.getCurrentRoute().name;
-    //     setCurrentScreen(routeNameRef.current);
-    //   }}
-    //   onStateChange={() => {
-    //     const currentRouteName = navigationRef.current.getCurrentRoute().name;
-    //     setCurrentScreen(currentRouteName);
-    //     routeNameRef.current = currentRouteName;
-    //   }}
-    // >
+    
       <Stack.Navigator
         screenOptions={{
           cardStyle: {

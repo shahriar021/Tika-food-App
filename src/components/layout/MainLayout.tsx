@@ -11,7 +11,7 @@ import AuthStack from "src/routes/AuthStack";
 
 const MainLayout = () => {
   // const token = useAppSelector((state) => state.auth.user?.access_token);
-  const token =0;
+  const token =1;
   const [, setCurrentScreen] = useState("");
   
   return (
