@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { EvilIcons, Feather, FontAwesome } from "@expo/vector-icons";
 import { View, Text, Platform, useWindowDimensions } from "react-native";
-import { HomeScreen } from "src/screens";
+import { HomeScreen, Profile } from "src/screens";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -99,7 +99,7 @@ export const BottomNavigation = () => {
       <BottomTabs.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
       <BottomTabs.Screen name="Cart" component={() => <View />} />
       <BottomTabs.Screen name="My Orders" component={() => <View />} />
-      <BottomTabs.Screen name="Profile" component={() => <View />} />
+      <BottomTabs.Screen name="Profile" options={{headerShown:false}} component={Profile} />
     </BottomTabs.Navigator>
   );
 };
