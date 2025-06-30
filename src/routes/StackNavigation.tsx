@@ -46,7 +46,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         />
         {/* <Stack.Screen name="Notification" component={} /> */}
         <Stack.Screen name="Restaurant Order" component={RestaurantOrder} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Profile" options={{headerShown:false}} component={Profile} />
         <Stack.Screen name="Log in" component={LoginScreen} />
         <Stack.Screen name="table Order" component={OrderThroughTable} />
         <Stack.Screen name="Order Submit" component={OrderSubmitForm} />

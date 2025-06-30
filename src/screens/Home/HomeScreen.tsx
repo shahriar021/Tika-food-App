@@ -7,24 +7,14 @@ import {
   Dimensions,
   TextInput,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import TopSection from "../../components/ui/homepage/TopSection";
-import { dashboardData } from "src/constants/dashboardData";
-import { AntDesign, Entypo, Fontisto, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import React, { useEffect, useState } from "react";
+import { AntDesign, Entypo, SimpleLineIcons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 import * as Font from "expo-font";
 
 const { width, height } = Dimensions.get("screen");
 
-const chunkArray = (arr: any[], size: number) => {
-  const chunked = [];
-  for (let i = 0; i < arr.length; i += size) {
-    chunked.push(arr.slice(i, i + size));
-  }
-  return chunked;
-};
 const DashboardScreen = ({ navigation }: { navigation: any }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [numbers] = useState([5, 2, 5, 5, 4, 1, 1,])
 
@@ -64,27 +54,7 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
         </View>
         <ScrollView contentContainerStyle={{ flexDirection: 'row', gap: 10, }} horizontal showsHorizontalScrollIndicator={false}>
           {numbers.map(item =>
-            //  <View className=" border border-gray-200 rounded-lg overflow-hidden " style={{
-            //   width: width * 0.6667, shadowColor: "#000",
-            //   backgroundColor: "white",
-            //   shadowOffset: { width: 0, height: 6 },
-            //   shadowOpacity: 0.2,
-            //   shadowRadius: 4,
-            //   elevation: 4,
-            // }}>
-            //   <Image source={require("../../../assets/restroIcon/nearbyRes.png")} style={{ width: "100%", height: 140, resizeMode: "cover" }} className="rounded-lg relative" />
-            //   <Text className="absolute text-xl font-semibold bg-white p-1 left-3 top-3 rounded-full text-[#19CC49]">Open Now</Text>
-            //   <View className="flex-1 px-2 flex-col justify-between py-2">
-            //     <Text className="font-bold mb-1 mt-1 text-xl">Urban Palate</Text>
-            //     <View className="flex-row justify-between ">
-            //       <View className="flex-row items-center gap-2" style={{flexShrink:1}}>
-            //         <SimpleLineIcons name="clock" size={24} color="black" />
-            //         <Text >9am - 11 pm</Text>
-            //       </View>
-            //       <Text>1.2 km away</Text>
-            //     </View>
-            //   </View>
-            // </View>
+            
             <View
               key={item} // add key
               className="border border-gray-200 rounded-lg overflow-hidden"
@@ -137,9 +107,6 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
             </View>
 
           )}
-
-
-
         </ScrollView>
         {/*  */}
         <View className="flex-row justify-between items-center mt-2 mb-2">
@@ -204,9 +171,6 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
             </View>
 
           )}
-
-
-
         </ScrollView>
        </ScrollView>
       </View>
