@@ -1,14 +1,48 @@
 import { Entypo } from "@expo/vector-icons";
 import React from "react";
-import {  View, Image, Dimensions, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, Dimensions, Text, ScrollView, TouchableOpacity, ImageSourcePropType } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { profileItems } from "../../constants/profileItems"
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type ProfileItemsProp={
+  icon:ImageSourcePropType;
+  label:string,
+  onPress:()=>void
+}
+
+type RootStackParamList = {
+  Settings: undefined;
+  Address: undefined;
+  About: undefined;
+  Privacy: undefined;
+  Terms: undefined;
+};
+
+type NavigationProp = StackNavigationProp<RootStackParamList>
 
 export default function YourComponent() {
-  const { width } = Dimensions.get("window"); 
+  const navigation = useNavigation<NavigationProp>()
+  const { width } = Dimensions.get("window");
+
+  const SettingsItem = ({ icon, label, onPress }:ProfileItemsProp) => (
+    <TouchableOpacity
+      onPress={onPress}
+      className="flex-row justify-between border p-2 m-2 rounded-lg border-gray-300 w-full"
+    >
+      <View className="flex-row items-center gap-2">
+        <Image source={icon} className="w-[20] h-[20]" />
+        <Text>{label}</Text>
+      </View>
+      <Entypo name="chevron-with-circle-right" size={24} color="gray" />
+    </TouchableOpacity>
+  );
+
 
   return (
-    <SafeAreaView style={{ flex: 1,backgroundColor:"white",overflow:'visible' }}>
-      <View style={{ width, height: 200,position: "relative" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white", overflow: 'visible' }}>
+      <View style={{ width, height: 200, position: "relative" }}>
         {/* Left Image */}
         <Image
           source={require("../../../assets/restroIcon/Ellipse1.png")}
@@ -35,56 +69,25 @@ export default function YourComponent() {
           }}
         />
         <View className="w-[100] h-[100] absolute z-10 overflow-hidden rounded-full left-1/2 bottom-0 -translate-x-1/2  border-4 border-white">
-          <Image source={require("../../../assets/restroIcon/tikaImg.jpg")} style={{width:"100%",height:"100%"}} resizeMode="cover"/>
+          <Image source={require("../../../assets/restroIcon/tikaImg.jpg")} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
         </View>
       </View>
       <Text className="text-center mt-2 mb-2 font-robotoBold">Lukas Wagner</Text>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="p-4 items-center">
-        <TouchableOpacity className="flex-row justify-between border p-2 m-2 rounded-lg border-gray-300 w-full">
-          <View className="flex-row items-center gap-2">
-            <Image source={require("../../../assets/restroIcon/setting.png")} className="w-[20] h-[20]"/>
-          <Text>Settings</Text>
-          </View>
-          <Entypo name="chevron-with-circle-right" size={24} color="gray" />
-        </TouchableOpacity>
 
-        <TouchableOpacity className="flex-row justify-between border p-2 m-2 rounded-lg border-gray-300  w-full">
-          <View className="flex-row items-center gap-2">
-            <Image source={require("../../../assets/restroIcon/location-03.png")} className="w-[20] h-[20]"/>
-          <Text>Address</Text>
-          </View>
-          <Entypo name="chevron-with-circle-right" size={24} color="gray" />
-        </TouchableOpacity>
-
-        <TouchableOpacity className="flex-row justify-between border p-2 m-2 rounded-lg border-gray-300  w-full">
-          <View className="flex-row items-center gap-2">
-            <Image source={require("../../../assets/restroIcon/Info_alt_light.png")} className="w-[20] h-[20]"/>
-          <Text>About Us</Text>
-          </View>
-          <Entypo name="chevron-with-circle-right" size={24} color="gray" />
-        </TouchableOpacity>
-
-        <TouchableOpacity className="flex-row justify-between border p-2 m-2 rounded-lg border-gray-300  w-full">
-          <View className="flex-row items-center gap-2">
-            <Image source={require("../../../assets/restroIcon/Chield.png")} className="w-[20] h-[20]"/>
-          <Text>Privacy Policy</Text>
-          </View>
-          <Entypo name="chevron-with-circle-right" size={24} color="gray" />
-        </TouchableOpacity>
-
-        <TouchableOpacity className="flex-row justify-between border p-2 m-2 rounded-lg border-gray-300  w-full">
-          <View className="flex-row items-center gap-2">
-            <Image source={require("../../../assets/restroIcon/Paper_light.png")} className="w-[20] h-[20]"/>
-          <Text>Terms & conditions</Text>
-          </View>
-          <Entypo name="chevron-with-circle-right" size={24} color="gray" />
-        </TouchableOpacity>
-
-        <TouchableOpacity className="mt-2 flex-row items-center border p-3 rounded-xl border-red-700 bg-red-50">
-          <Image source={require("../../../assets/restroIcon/logout-02.png")} className="w-[30] h-[30]"/>
-          <Text>Log out</Text>
-        </TouchableOpacity>
+          {profileItems?.map((item, index) => (
+            <SettingsItem
+              key={index}
+              icon={item.icon}
+              label={item.label}
+              onPress={()=>navigation.navigate(item.route as keyof RootStackParamList)}
+            />
+          ))}
+          <TouchableOpacity className="mt-2 flex-row items-center border p-3 rounded-xl border-red-700 bg-red-50">
+            <Image source={require("../../../assets/restroIcon/logout-02.png")} className="w-[30] h-[30]" />
+            <Text>Log out</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
