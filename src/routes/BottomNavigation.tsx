@@ -1,13 +1,11 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { EvilIcons, Feather, FontAwesome } from "@expo/vector-icons";
-import { View, Text, Platform, useWindowDimensions } from "react-native";
+import { View, Text, Platform, useWindowDimensions, Image } from "react-native";
 import { HomeScreen, Profile } from "src/screens";
 
 const BottomTabs = createBottomTabNavigator();
 
 const ACTIVE_BG_COLOR = "#c21a1e";
-const INACTIVE_ICON_COLOR = "#c21a1e";
 const ACTIVE_ICON_COLOR = "#fff";
 
 export const BottomNavigation = () => {
@@ -20,13 +18,13 @@ export const BottomNavigation = () => {
           height: 68,
           paddingBottom: 7,
           paddingTop: 17,
-          paddingHorizontal: 5,
           backgroundColor: "#F7F7F7",
           borderTopWidth: 0,
           elevation: 0,
           marginHorizontal: 17,
           borderRadius: 60,
           marginBottom: Platform.OS === "android" ? 10 : 16,
+          paddingHorizontal:5
         },
         tabBarItemStyle: {
           width: "25%", // even spacing for 4 tabs
@@ -34,22 +32,27 @@ export const BottomNavigation = () => {
           alignItems: "center",
         },
         tabBarShowLabel: false,
-        tabBarIcon: ({ focused, size }) => {
-          let iconName = "circle";
-          let IconComponent = Feather;
+        tabBarIcon: ({ focused }) => {
+          let iconSource;
 
-          if (route.name === "Home") iconName = "home";
+          if (route.name === "Home") {
+            iconSource = focused
+              ? require("../../assets/restroIcon/home-active.png")
+              : require("../../assets/restroIcon/homeInactive.png");
+          } 
           else if (route.name === "Cart") {
-            iconName = "cart";
-            IconComponent = EvilIcons;
-          }
-
+            iconSource = focused
+              ? require("../../assets/restroIcon/cart-active.png")
+              : require("../../assets/restroIcon/cart-inactive.png");
+          } 
           else if (route.name === "My Orders") {
-            iconName = "user-circle";
-            IconComponent = FontAwesome;
+            iconSource = focused
+              ? require("../../assets/restroIcon/order-active.png")
+              : require("../../assets/restroIcon/order-inactive.png");
           } else if (route.name === "Profile") {
-            iconName = "user-circle";
-            IconComponent = FontAwesome;
+            iconSource = focused
+              ? require("../../assets/restroIcon/profile-active.png")
+              : require("../../assets/restroIcon/profile-inactive.png");
           }
 
           if (focused) {
@@ -63,13 +66,14 @@ export const BottomNavigation = () => {
                   paddingHorizontal: 12,
                   paddingVertical: 8,
                   borderRadius: 30,
+                
                   minWidth: 90,
-                  minHeight: 50       ,
-                  flexShrink: 1,        // 🧠 allow shrinking to fit small screens
-    maxWidth: width * 0.7        
+                  minHeight: 50,
+                  flexShrink: 1,
+                  maxWidth: width * 0.7,
                 }}
               >
-                <IconComponent name={iconName} size={14} color={ACTIVE_ICON_COLOR} />
+                <Image source={iconSource} style={{ width: 24, height: 24 }} resizeMode="contain" />
                 <Text
                   numberOfLines={1}
                   style={{
@@ -83,23 +87,21 @@ export const BottomNavigation = () => {
                   {route.name === "Profile"
                     ? "Profile"
                     : route.name === "Restaurant Order"
-                    ? "Schedule"
-                    : route.name}
+                      ? "Schedule"
+                      : route.name}
                 </Text>
               </View>
             );
           } else {
-            return (
-              <IconComponent name={iconName} size={size} color={INACTIVE_ICON_COLOR} />
-            );
+            return <Image source={iconSource} style={{ width: 24, height: 24 }} resizeMode="contain" />;
           }
-        },
+        }
       })}
     >
       <BottomTabs.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
       <BottomTabs.Screen name="Cart" component={() => <View />} />
       <BottomTabs.Screen name="My Orders" component={() => <View />} />
-      <BottomTabs.Screen name="Profile" options={{headerShown:false}} component={Profile} />
+      <BottomTabs.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
     </BottomTabs.Navigator>
   );
 };

@@ -11,7 +11,7 @@ const LoginOTPScreen = () => {
   const [otpNumbers, setOtpNumbers] = useState(['', '', '', '']);
   const inputRefs = useRef<Array<TextInput | null>>([]);
 
-  const handleChange = (text:any, index:any) => {
+  const handleChange = (text: any, index: any) => {
     if (/^\d$/.test(text)) {
       const newOtp = [...otpNumbers];
       newOtp[index] = text;
@@ -24,14 +24,14 @@ const LoginOTPScreen = () => {
   };
 
   console.log(otpNumbers.join(""))
-  
-  const handleKeyPress = (e:any, index:any) => {
+
+  const handleKeyPress = (e: any, index: any) => {
     if (e.nativeEvent.key === 'Backspace' && otpNumbers[index] === '' && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
   };
 
-  const handleVerify = () => { 
+  const handleVerify = () => {
     const code = otpNumbers.join('');
     navigation.navigate("Reset Password" as never);
   };
@@ -56,7 +56,7 @@ const LoginOTPScreen = () => {
     <View className='flex-1 items-center  px-2'>
       <Text className='font-robotoBold text-xl mb-2 text-red-700 mt-2'>Verify Your Identity</Text>
       <Text className='text-center text-gray-500'>
-       {` 
+        {` 
 For your security, verify the code sent to your registered contact. \n Let’s confirm it’s you!`}
       </Text>
 
