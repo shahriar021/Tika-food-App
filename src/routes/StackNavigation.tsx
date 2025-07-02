@@ -20,6 +20,8 @@ import Privacy from "src/screens/Profile/Privacy";
 import Terms from "src/screens/Profile/Terms";
 import Address from "src/screens/Profile/Address";
 import Setting from "src/screens/Profile/Setting";
+import ChangePassword from "src/screens/Profile/ChangePassword";
+import EditProfile from "src/screens/Profile/EditProfile";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -64,6 +66,8 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         <Stack.Screen name="Terms" component={Terms}/>
         <Stack.Screen name="Address" component={Address}/>
         <Stack.Screen name="Setting" component={Setting}/>
+        <Stack.Screen name="Edit Profile" component={EditProfile}/>
+        <Stack.Screen name="Change Password" component={ChangePassword}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );

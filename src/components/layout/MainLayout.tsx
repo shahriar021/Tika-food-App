@@ -1,11 +1,7 @@
 import { View } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import React, {  useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import StackNavigation from "src/routes/StackNavigation";
-import SplashScreen from "../ui/splashScreen/SplashScreen";
-import { LoginScreen } from "src/screens";
-import { useAppSelector } from "src/redux/hooks";
-import VerifyEmailPage from "src/screens/Auth/VerifyEmailPage";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthStack from "src/routes/AuthStack";
 import { useFonts } from "expo-font";
@@ -24,7 +20,7 @@ const MainLayout = () => {
   return (
     <NavigationContainer>
     <View style={{ flex: 1 }}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       {token ? (
         <StackNavigation setCurrentScreen={setCurrentScreen} />
       ) : (
