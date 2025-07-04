@@ -8,7 +8,7 @@ import { useFonts } from "expo-font";
 
 const MainLayout = () => {
   // const token = useAppSelector((state) => state.auth.user?.access_token);
-  const token =1;
+  const token =0;
   const [, setCurrentScreen] = useState("");
 
   const [fontsLoaded] = useFonts({

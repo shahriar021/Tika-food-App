@@ -47,7 +47,7 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
        <ScrollView contentContainerStyle={{paddingBottom:200}} showsVerticalScrollIndicator={false}>
          <View className="flex-row justify-between items-center mt-2 mb-2">
           <Text className="text-2xl font-bold">Nearby Restaurants</Text>
-          <TouchableOpacity className="flex-row items-center ">
+          <TouchableOpacity className="flex-row items-center " onPress={()=>navigation.navigate("Nearby Restaurants List")}>
             <Text className="text-red-700">View All</Text>
             <Entypo name="chevron-small-right" size={24} color="red" />
           </TouchableOpacity>

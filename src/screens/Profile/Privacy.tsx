@@ -9,7 +9,12 @@ const Privacy = () => {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "Privacy Policy",
-            headerSyle: { backgroundColor: "white" },
+            headerSyle: {
+                backgroundColor: "white",
+                elevation: 0, // for Android
+                shadowOpacity: 0, // for iOS
+                borderBottomWidth: 0, // for iOS
+            },
             headerTintColor: "black",
             headerTitleAlign: "center",
             headerLeft: () => (

@@ -39,7 +39,12 @@ const LoginOTPScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "OTP Verification ",
-      headerStyle: { backgroundColor: "white" },
+      headerStyle: {
+        backgroundColor: "white",
+        elevation: 0, // for Android
+        shadowOpacity: 0, // for iOS
+        borderBottomWidth: 0, // for iOS
+      },
       headerTintColor: "black",
       headerTitleAlign: "center",
       headerLeft: () => (
@@ -53,7 +58,7 @@ const LoginOTPScreen = () => {
   }, [navigation]);
 
   return (
-    <View className='flex-1 items-center  px-2'>
+    <View className='flex-1 items-center  px-2 bg-white'>
       <Text className='font-robotoBold text-xl mb-2 text-red-700 mt-2'>Verify Your Identity</Text>
       <Text className='text-center text-gray-500'>
         {` 

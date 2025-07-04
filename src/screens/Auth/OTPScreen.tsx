@@ -11,7 +11,7 @@ const OTPScreen = () => {
   const [otpNumbers, setOtpNumbers] = useState(['', '', '', '']);
   const inputRefs = useRef<Array<TextInput | null>>([]);
 
-  const handleChange = (text:any, index:any) => {
+  const handleChange = (text: any, index: any) => {
     if (/^\d$/.test(text)) {
       const newOtp = [...otpNumbers];
       newOtp[index] = text;
@@ -24,8 +24,8 @@ const OTPScreen = () => {
   };
 
   console.log(otpNumbers.join(""))
-  
-  const handleKeyPress = (e:any, index:any) => {
+
+  const handleKeyPress = (e: any, index: any) => {
     if (e.nativeEvent.key === 'Backspace' && otpNumbers[index] === '' && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
@@ -39,7 +39,12 @@ const OTPScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "Verify your email",
-      headerStyle: { backgroundColor: "white" },
+      headerStyle: {
+        backgroundColor: "white",
+        elevation: 0, // for Android
+        shadowOpacity: 0, // for iOS
+        borderBottomWidth: 0, // for iOS
+      },
       headerTintColor: "black",
       headerTitleAlign: "center",
       headerLeft: () => (
@@ -53,10 +58,10 @@ const OTPScreen = () => {
   }, [navigation]);
 
   return (
-    <View className='flex-1 items-center justify-center'>
+    <View className='flex-1 items-center justify-center bg-white'>
       <Text className='font-robotoBold text-xl mb-2'>Enter OTP</Text>
       <Text className='text-center text-gray-500'>
-       {` We have just sent you a 4-digit code \n via your email.`}
+        {` We have just sent you a 4-digit code \n via your email.`}
       </Text>
 
       <View className='flex-row gap-5 mt-3 mb-2'>

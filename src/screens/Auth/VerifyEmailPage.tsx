@@ -14,6 +14,9 @@ const VerifyEmailPage = () => {
       title: "Verify your email",
       headerStyle: {
         backgroundColor: "white",
+        elevation: 0, // for Android
+        shadowOpacity: 0, // for iOS
+        borderBottomWidth: 0, // for iOS
       },
       headerTintColor: "black",
       headerTitleAlign: "center",
@@ -41,7 +44,7 @@ const VerifyEmailPage = () => {
   }
 
   return (
-    <View className='flex-1'>
+    <View className='flex-1 bg-white'>
       <View className='flex-1 items-center justify-center'>
         <View style={{ width: width * 0.2, height: height * 0.1 }} className='bg-red-50 rounded-full'>
           <Image source={require("../../../assets/restroIcon/Message_open_duotone.png")} style={{ width: "100%", height: "100%" }} resizeMode='contain' />
