@@ -17,7 +17,8 @@ module.exports = {
       fontFamily: {
         satoshiBold: ["Satoshi-Bold"],
         robotoBold:['Roboto-Bold'],
-        nunitoBold:['Nunito-Bold']
+        nunitoBold:['Nunito-Bold'],
+        robotoRegular:['Roboto-Regular']
       },
       colors:{
         darkYellow:'#FFC107',
