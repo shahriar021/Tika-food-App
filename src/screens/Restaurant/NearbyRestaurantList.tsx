@@ -39,8 +39,11 @@ const NearbyRestaurantList = () => {
                 <TextInput className="flex-1" placeholder="Seach for nearby restaurants" placeholderTextColor="#7F7F7F" />
             </View>
             <ScrollView contentContainerStyle={{ alignItems: "center", padding: 10, paddingBottom: 200 }} showsVerticalScrollIndicator={false}>
-                {nearbyList?.map(n => <TouchableOpacity key={n} className='border border-gray-200 rounded-2xl overflow-hidden mt-3 mb-5' style={{ width: width * 0.9 }} onPress={()=>navigation.navigate("Restaurant Profile")}>
+                {nearbyList?.map(n => <TouchableOpacity key={n} className='border border-gray-200 rounded-2xl overflow-hidden mt-3 mb-5 relative' style={{ width: width * 0.9 }} onPress={()=>navigation.navigate("Restaurant Profile")}>
                     <Image source={require("../../../assets/restroIcon/nearbyRes.png")} style={{ width: "100%", height: 181 }} className='rounded-xl' />
+                    <Text className="absolute text-xl font-semibold bg-white p-1 left-3 top-3 rounded-full text-[#19CC49]">
+                                    Open Now
+                                  </Text>
                     <Text className='mt-2 p-2 font-robotoBold text-xl'>Urban Palate</Text>
                     <View className='flex-row items-center justify-between mt-2 p-2'>
                         <View className='flex-row items-center gap-2'>
