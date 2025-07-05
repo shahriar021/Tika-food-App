@@ -16,6 +16,7 @@ import Address from "src/screens/Profile/Address";
 import Setting from "src/screens/Profile/Setting";
 import ChangePassword from "src/screens/Profile/ChangePassword";
 import EditProfile from "src/screens/Profile/EditProfile";
+import RestaurantProfile from "src/screens/Restaurant/RestaurantProfile";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -61,6 +62,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         <Stack.Screen name="Change Password" component={ChangePassword}/>
 
         <Stack.Screen name="Nearby Restaurants List" component={NearbyRestaurantList}/>
+        <Stack.Screen name="Restaurant Profile" options={{headerShown:false}} component={RestaurantProfile}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );

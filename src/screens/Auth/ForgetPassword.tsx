@@ -39,7 +39,7 @@ const ForgetPassword = () => {
   }
 
   return (
-    <View className='p-1 bg-white'>
+    <View className='flex-1 p-1 bg-white'>
       <Text className='mb-4  mt-2 text-center text-red-700 font-bold text-xl'>No worries!</Text>
       <Text className='text-center'>
         {"Enter your registered email address or mobile number and we’ll \n send you instructions to reset your password. Let’s get you back \n on track quickly and securely!"}</Text>
