@@ -13,7 +13,12 @@ const ResetPassword = () => {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "Reset Password",
-            headerStyle: { backgroundColor: "white" },
+            headerStyle: {
+                backgroundColor: "white",
+                elevation: 0, // for Android
+                shadowOpacity: 0, // for iOS
+                borderBottomWidth: 0, // for iOS
+            },
             headerTintColor: "black",
             headerTitleAlign: "center",
             headerLeft: () => (
@@ -36,7 +41,7 @@ const ResetPassword = () => {
     };
 
     return (
-        <View className='flex-1 items-center '>
+        <View className='flex-1 items-center bg-white'>
             <Text className='text-center mt-2 text-xl text-red-700 font-robotoBold mb-3'>Set Your New Password</Text>
             <Text className='text-center text-gray-700'>
                 Create a new password to secure your account.</Text>

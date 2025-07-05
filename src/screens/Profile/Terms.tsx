@@ -10,7 +10,11 @@ const Terms = () => {
     useLayoutEffect(()=>{
         navigation.setOptions({
             title:"Terms $ Conditions",
-            headerStyle:{backgroundColor:"white"},
+            headerStyle:{backgroundColor:"white",
+                elevation: 0, // for Android
+  shadowOpacity: 0, // for iOS
+  borderBottomWidth: 0, // for iOS
+            },
             headerTintColor:"black",
             headerTitleAlign:"center",
             headerLeft:()=>(

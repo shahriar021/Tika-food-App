@@ -11,7 +11,11 @@ const Setting = () => {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "Settings",
-            headerStyle: { backgroundColor: "white" },
+            headerStyle: { backgroundColor: "white" ,
+                elevation: 0, // for Android
+  shadowOpacity: 0, // for iOS
+  borderBottomWidth: 0, // for iOS
+            },
             headerTintColor: "black",
             headerTitleAlign: "center",
             headerLeft: () => (

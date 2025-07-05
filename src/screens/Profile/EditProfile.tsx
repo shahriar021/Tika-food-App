@@ -11,7 +11,12 @@ const EditProfile = () => {
     useLayoutEffect(() => {
         navigation.setOptions({
             title: "Edit Profile Details",
-            headerStyle: { backgroundColor: "white" },
+            headerStyle: {
+                backgroundColor: "white",
+                elevation: 0, // for Android
+                shadowOpacity: 0, // for iOS
+                borderBottomWidth: 0, // for iOS
+            },
             headerTintColor: "#626262",
             headerTitleAlign: "center",
             headerLeft: () => (
@@ -31,7 +36,7 @@ const EditProfile = () => {
                     <Octicons name="pencil" size={24} color="white" />
                 </View>
             </View>
-           
+
 
             <Text className='font-robotoBold text-xl text-[#33363F]'>Current Password</Text>
             <View className='flex-row items-center border rounded-xl border-gray-400 mt-2 mb-2 p-1'>
@@ -49,7 +54,7 @@ const EditProfile = () => {
             </View>
 
             <View className='flex-row gap-3 items-center mt-3 mb-3'>
-                <Image source={require("../../../assets/restroIcon/location-03.png")}/>
+                <Image source={require("../../../assets/restroIcon/location-03.png")} />
                 <Text className='text-[#000000] font-robotoBold text-xl'>Downtown Los Angeles, CA</Text>
             </View>
 
