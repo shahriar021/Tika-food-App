@@ -8,6 +8,7 @@ import {
   OrderList,
   Kitchen,
   NearbyRestaurantList,
+  HomeScreen,
 } from "src/screens";
 import AboutUs from "src/screens/Profile/AboutUs";
 import Privacy from "src/screens/Profile/Privacy";
@@ -17,6 +18,10 @@ import Setting from "src/screens/Profile/Setting";
 import ChangePassword from "src/screens/Profile/ChangePassword";
 import EditProfile from "src/screens/Profile/EditProfile";
 import RestaurantProfile from "src/screens/Restaurant/RestaurantProfile";
+import PopularItems from "src/screens/Restaurant/PopularItems";
+import PopularItemDetails from "src/screens/Restaurant/PopularItemDetails";
+import PaymentAnimation from "src/screens/Payment/PaymentAnimation";
+import PaymentInfo from "src/screens/Payment/PaymentInfo";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -63,6 +68,10 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
 
         <Stack.Screen name="Nearby Restaurants List" component={NearbyRestaurantList}/>
         <Stack.Screen name="Restaurant Profile" options={{headerShown:false}} component={RestaurantProfile}/>
+        <Stack.Screen name="Popular Items"  component={PopularItems}/>
+        <Stack.Screen name="Popular Items Details" options={{headerShown:false}} component={PopularItemDetails}/>
+        <Stack.Screen name="Payment Animation" options={{headerShown:false}} component={PaymentAnimation}/>
+        <Stack.Screen name="Payment Info" options={{headerShown:false}} component={PaymentInfo}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );

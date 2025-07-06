@@ -1,9 +1,11 @@
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useLayoutEffect, useState } from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native'
 import PopularItemsList from './PopularItemsList';
 import AllItemList from './AllItemList';
+
+const { width, height } = Dimensions.get("screen");
 
 const RestaurantProfile = () => {
 
@@ -44,7 +46,8 @@ const RestaurantProfile = () => {
                  </View>
                  </View> */}
 
-                <View className="flex-row w-full mt-3 gap-2 items-center">
+                <View style={{height:height*0.25}}>
+                    <View className="flex-row w-full mt-3 gap-2 items-center">
                     {/* Left Column */}
                     <View className="flex-col w-1/2 gap-2">
                         <View className="flex-row items-center gap-2">
@@ -90,6 +93,7 @@ const RestaurantProfile = () => {
                     <Entypo name="dot-single" size={24} color="black" />
                     <Text>NikoSafe Verified: Scan QR for Safe Entry   Certified by xxxx Health Dept, 2025</Text>
                 </View>
+                
 
                 <Text className='mt-2 text-start text-black font-robotoBold text-xl'>Menu<Text className='text-gray-300'>(List of Dishes)</Text></Text>
 
@@ -100,6 +104,7 @@ const RestaurantProfile = () => {
                     <TouchableOpacity onPress={() => setIsPopular(false)}>
                         <Text className={`${!isPopular ? "underline text-[#C21A1E]" : "text-black"} font-robotoRegular`}>All</Text>
                     </TouchableOpacity>
+                </View>
                 </View>
 
                 <View className='flex-1 items-center mt-4'>
