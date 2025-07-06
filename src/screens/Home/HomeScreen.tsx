@@ -111,7 +111,7 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
         {/*  */}
         <View className="flex-row justify-between items-center mt-2 mb-2">
           <Text className="text-2xl font-bold">Popular Items</Text>
-          <TouchableOpacity className="flex-row items-center ">
+          <TouchableOpacity className="flex-row items-center " onPress={()=>navigation.navigate("Popular Items")}>
             <Text className="text-red-700">View All</Text>
             <Entypo name="chevron-small-right" size={24} color="red" />
           </TouchableOpacity>
