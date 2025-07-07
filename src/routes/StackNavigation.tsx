@@ -22,6 +22,7 @@ import PopularItems from "src/screens/Restaurant/PopularItems";
 import PopularItemDetails from "src/screens/Restaurant/PopularItemDetails";
 import PaymentAnimation from "src/screens/Payment/PaymentAnimation";
 import PaymentInfo from "src/screens/Payment/PaymentInfo";
+import CartPage from "src/screens/Cart/CartPage";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
