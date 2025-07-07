@@ -2,7 +2,6 @@ import { View, Text, TouchableOpacity, ScrollView, Image, TextInput } from 'reac
 import React, { useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign, Entypo } from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const PopularItems = () => {
 
