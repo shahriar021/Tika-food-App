@@ -52,7 +52,7 @@ const MyOrders = () => {
                         <Text className='text-[#C21A1E]'>Cancel</Text>
                     </TouchableOpacity>
 
-                     <TouchableOpacity className='border p-3 border-[#C21A1E] rounded-full flex-1 items-center bg-[#C21A1E]'>
+                     <TouchableOpacity className='border p-3 border-[#C21A1E] rounded-full flex-1 items-center bg-[#C21A1E]' onPress={()=>navigation.replace("Track Order")}>
                         <Text className='text-white'>Track Order</Text>
                     </TouchableOpacity>
                 </View>
