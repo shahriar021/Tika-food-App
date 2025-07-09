@@ -16,7 +16,7 @@ const { width, height } = Dimensions.get("screen");
 
 const DashboardScreen = ({ navigation }: { navigation: any }) => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
-  const [numbers] = useState([5, 2, 5, 5, 4, 1, 1,])
+  const [numbers] = useState(Array.from({length:30},(_,i)=>i+1))
 
   useEffect(() => {
     Font.loadAsync({

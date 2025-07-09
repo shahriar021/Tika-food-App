@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, Platform, useWindowDimensions, Image } from "react-native";
 import { HomeScreen, Profile } from "src/screens";
 import CartPage from "src/screens/Cart/CartPage";
+import MyOrders from "src/screens/Orders/MyOrders";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -101,7 +102,7 @@ export const BottomNavigation = () => {
     >
       <BottomTabs.Screen name="Home" options={{ headerShown: false }} component={HomeScreen} />
       <BottomTabs.Screen name="Cart" component={CartPage} />
-      <BottomTabs.Screen name="My Orders" component={() => <View />} />
+      <BottomTabs.Screen name="My Orders" component={MyOrders} />
       <BottomTabs.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
     </BottomTabs.Navigator>
   );
