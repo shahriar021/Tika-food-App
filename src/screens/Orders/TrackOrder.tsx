@@ -1,8 +1,9 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { scale, verticalScale } from 'react-native-size-matters'
-import { FontAwesome } from '@expo/vector-icons'
+import { Entypo, FontAwesome } from '@expo/vector-icons'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const TrackOrder = () => {
 
@@ -16,17 +17,24 @@ const TrackOrder = () => {
                 shadowOpacity: 0,
                 borderBottomWidth: 0
             },
-            headerTitleAlign: "center"
+            headerTitleAlign: "center",
+            headerLeft: () => (
+        <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
+          <View className='w-[35px] h-[35px] border border-red-100 items-center justify-center rounded-full'>
+            <Entypo name="chevron-small-left" size={24} color="red" />
+          </View>
+        </TouchableOpacity>
+      )
         })
     }, [navigation])
 
     return (
-        <View className='p-2 items-center flex-1'>
+        <ScrollView className='p-2  flex-1' contentContainerStyle={{alignItems:"center"}}>
             <View
                 className='mt-3 mb-1 border border-gray-300 rounded-2xl p-2 mx-2 flex-row gap-2 bg-white'
                 style={{
                     width: '100%',
-                    height: verticalScale(100), // ✅ Fixed card height
+                    height: verticalScale(100), 
                     shadowColor: '#000',
                     shadowOffset: { width: 0, height: 2 },
                     shadowOpacity: 0.1,
@@ -72,22 +80,70 @@ const TrackOrder = () => {
                 </View>
             </View>
 
-            <View className=' flex-1 w-full mt-3 mx-2' style={{ alignItems: "flex-start" }}>
+            <View className=' w-full mt-3 mx-2' style={{ alignItems: "flex-start" }}>
                 <Text className='font-robotoBold text-2xl'>Order Progress Tracker</Text>
 
-                <View className='flex-1 bg-red-400 items-start '>
+                <View className='items-start mb-2'>
                     <View className='flex-row items-center gap-3'>
                         <FontAwesome name="circle" size={24} color="#5555554D" />
-                    <Text>Delivered</Text>
-                     
+                        <Text>Delivered</Text>
+
                     </View>
-                    <FontAwesome name="circle" size={14} color="#5555554D" />
+                    <View className='ml-1 mt-2'>
+                        <FontAwesome name="circle" size={14} color="#5555554D" />
+                    </View>
+                    {/* ---- */}
+                    <View className='flex-row items-center gap-3 mt-1'>
+                        <FontAwesome name="circle" size={24} color="#BA1414" />
+                        <Text>Out for Delivery</Text>
+
+                    </View>
+                    <View className='ml-1 mt-2'>
+                        <FontAwesome name="circle" size={14} color="#BA1414" />
+                    </View>
+                    {/* ------ */}
+                    <View className='flex-row items-center gap-3 mt-1'>
+                        <FontAwesome name="circle" size={24} color="#BA1414" />
+                        <Text>Preparing Order</Text>
+
+                    </View>
+                    <View className='ml-1 mt-2'>
+                        <FontAwesome name="circle" size={14} color="#BA1414" />
+                    </View>
+                    {/* ----- */}
+                    <View className='flex-row items-center gap-3 mt-1'>
+                        <FontAwesome name="circle" size={24} color="#BA1414" />
+                        <Text>Order Placed</Text>
+
+                    </View>
+                    <View className='ml-1 mt-2'>
+                        <FontAwesome name="circle" size={14} color="#BA1414" />
+                    </View>
                 </View>
-
-
-
+               
             </View>
-        </View>
+             <View className='border border-gray-100 w-full mx-2 mb-2' />
+            <View className='border border-gray-100 w-full mx-3 mb-1' />
+
+            <View className='flex-row gap-2 w-full' style={{alignItems:"flex-start"}}>
+                <Image source={require("../../../assets/restroIcon/orderLocation.png")} style={{width:18,height:18}}/>
+                <Text className='text-[#BA2720] font-robotoRegular'>Delivery Location</Text>
+                
+            </View>
+           <View className='w-full mt-2'>
+             <Text className='font-robotoBold'>21b, Karimu Kotun Street, Victoria Island</Text>
+             <Text className='font-robotoBold mt-1'>Order Details</Text>
+             <Text>2x Chicken Burger</Text>
+             <Text>1x Fries</Text>
+             <Text>1x Coke</Text>
+             
+           </View>
+           <View className='border border-gray-100 w-full mx-3 mb-1' />
+           <View className='flex-row justify-between w-full'>
+            <Text className='font-robotoBold'>Subtotal</Text>
+            <Text className='font-robotoBold'>$33.56 <Text className='text-[#9796A1] font-robotoBold'>USD</Text></Text>
+           </View>
+        </ScrollView>
     )
 }
 
