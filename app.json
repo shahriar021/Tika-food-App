@@ -24,7 +24,7 @@
       },
       "permissions": [],
       "useNextNotificationsApi": true,
-      "package": "com.smartsoftware.sas",
+      "package": "com.sparktech.sas",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyC4fsrgciACjhUacg9umvRHflrJJHFovdY"

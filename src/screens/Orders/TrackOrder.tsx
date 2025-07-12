@@ -11,12 +11,14 @@ const TrackOrder = () => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
+            title:"Track Order",
             headerStyle: {
                 backgroundColor: "white",
                 elevation: 0,
                 shadowOpacity: 0,
                 borderBottomWidth: 0
             },
+            headerTintColor:"#626262",
             headerTitleAlign: "center",
             headerLeft: () => (
         <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
@@ -35,11 +37,7 @@ const TrackOrder = () => {
                 style={{
                     width: '100%',
                     height: verticalScale(100), 
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.1,
-                    shadowRadius: 4,
-                    elevation: 3,
+                    
                 }}
             >
                 {/* Image */}

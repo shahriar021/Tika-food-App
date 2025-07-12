@@ -25,6 +25,8 @@ import PaymentInfo from "src/screens/Payment/PaymentInfo";
 import CartPage from "src/screens/Cart/CartPage";
 import TrackOrder from "src/screens/Orders/TrackOrder";
 import ViewDetails from "src/screens/Orders/ViewDetails";
+import PaymentOption from "src/screens/Payment/PaymentOption";
+import SpecialInstructions from "src/screens/Cart/SpecialInstructions";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -77,6 +79,8 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         <Stack.Screen name="Payment Info" options={{headerShown:false}} component={PaymentInfo}/>
         <Stack.Screen name="Track Order" component={TrackOrder}/>
         <Stack.Screen name="View Details" component={ViewDetails}/>
+        <Stack.Screen name="Payment Options" component={PaymentOption}/>
+        <Stack.Screen name="Special Instructions" component={SpecialInstructions}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );

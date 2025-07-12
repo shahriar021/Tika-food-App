@@ -17,12 +17,17 @@ const CartPage = () => {
                 elevation: 0,
                 shadowOpacity: 0,
                 borderBottomWidth: 0,
-            }
+            },
+            headerTitleAlign:"center"
         })
     }, [navigation])
 
+    const handleInstuction=(text)=>{
+        navigation.navigate("Special Instructions",{indicator:text})
+    }
+
     return (
-        <ScrollView className='flex-1 bg-white p-3' contentContainerStyle={{ paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+        <ScrollView className='flex-1 bg-white p-3 ' contentContainerStyle={{ paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
             {cartList.map(x =>
             (<View key={x} className='mt-2 mb-2 relative flex-row p-2 bg-white border border-gray-200 shadow-slate-400 rounded-3xl   mx-3' >
                 <TouchableOpacity className='absolute -right-3 -top-3'><AntDesign name="closecircle" size={24} color={"#E20000"} /></TouchableOpacity>
@@ -71,12 +76,12 @@ const CartPage = () => {
             </View>
             <Text className='mt-2 text-[#626262] font-robotoRegular mx-2'>Special Instructions (Optional)</Text>
             <View className='mt-2 p-2 border rounded-xl border-gray-300 bg-[#E2E2E2]'>
-                <TouchableOpacity className='flex-row justify-between mb-1'>
+                <TouchableOpacity className='flex-row justify-between mb-1' onPress={()=>handleInstuction("restaurant")}>
                     <Text className='text-[#626262] font-robotoRegular'>Special Instructions for the restaurant </Text>
                     <AntDesign name="right" size={24} color={"#626262"} />
                 </TouchableOpacity>
                 <View className='border border-gray-300 mx-2 mb-1' />
-                <TouchableOpacity className='flex-row justify-between mt-1'>
+                <TouchableOpacity className='flex-row justify-between mt-1' onPress={()=>handleInstuction("rider")}>
                     <Text className='text-[#626262] font-robotoRegular'>Special Instructions for the rider </Text>
                     <AntDesign name="right" size={24} color={"#626262"} />
                 </TouchableOpacity>
@@ -85,9 +90,9 @@ const CartPage = () => {
             </View>
 
             <View className="items-center mt-3">
-                <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} >
+                <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={()=>navigation.navigate("Payment Options")}>
                     <LinearGradient colors={["#DD0F14", "#C21A1E"]} style={{ width, borderRadius: 999, alignItems: "center" }}>
-                        <Text className="text-white p-3 ">Add To Cart</Text>
+                        <Text className="text-white p-3 ">Checkout</Text>
                     </LinearGradient>
                 </TouchableOpacity>
             </View>

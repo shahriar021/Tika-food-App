@@ -1,10 +1,12 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, useWindowDimensions } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { scale, verticalScale } from 'react-native-size-matters';
+import { useDimensionsChange } from 'react-native-responsive-dimensions';
 
 const MyOrders = () => {
 
+    const {width}=useWindowDimensions()
     const navigation: any = useNavigation()
     const [isUpcoming, setIsUpcoming] = useState(true)
 
@@ -21,7 +23,7 @@ const MyOrders = () => {
     }, [navigation])
 
     return (
-        <View className='bg-white flex-1 items-center p-3 ' >
+        <View className='bg-white flex-1 items-center p-3 ' style={{width:width}}>
             <View className='flex-row border w-full rounded-full overflow-hidden border-gray-300 p-1 mx-3'>
                 <TouchableOpacity className={`${isUpcoming ? "bg-[#C21A1E]" : "bg-white"} py-3 flex-1 rounded-full items-center`} onPress={() => setIsUpcoming(true)}>
                     <Text className={`${isUpcoming ? "text-white" : "text-black"}`}>Upcoming</Text>
