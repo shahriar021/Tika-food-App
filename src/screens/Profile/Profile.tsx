@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ImageSourcePropType,
   Platform,
+  useWindowDimensions,
 } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -44,6 +45,8 @@ export default function YourComponent() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp>();
 
+  const {width,height}=useWindowDimensions()
+
   const SettingsItem = ({ icon, label, onPress }: ProfileItemsProp) => (
     <TouchableOpacity
       onPress={onPress}
@@ -61,84 +64,6 @@ export default function YourComponent() {
     </TouchableOpacity>
   );
 
-  return (
-    <>
-      <StatusBar style="dark" translucent backgroundColor="transparent" />
-
-      {/* 🔥 Header area including SVGs */}
-      <View style={{ width: "100%", height: 200, position: "relative", backgroundColor: "white" }}>
-        {/* Left SVG */}
-        <LeftSVG
-          width={width * 0.65}
-          height="100%"
-          style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            zIndex: 1,
-          }}
-        />
-
-        {/* Right SVG */}
-        <RightSVG
-          width={width * 0.6}
-          height="100%"
-          style={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-            zIndex: 1,
-          }}
-        />
-
-        {/* Title */}
-        <Text
-          className="font-robotoBold absolute z-10 text-white text-2xl left-1/2 -translate-x-1/2"
-          style={{ top: insets.top + 10 }}
-        >
-          Profile
-        </Text>
-
-        {/* Avatar */}
-        <View className="w-[100] h-[100] absolute z-10 overflow-hidden rounded-full left-1/2 bottom-0 -translate-x-1/2 border-4 border-white">
-          <Image
-            source={require("../../../assets/restroIcon/tikaImg.jpg")}
-            style={{ width: "100%", height: "100%" }}
-            resizeMode="cover"
-          />
-        </View>
-      </View>
-
-      {/* ✅ Content Area */}
-      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-        <Text className="text-center mb-2 font-robotoBold">Lukas Wagner</Text>
-
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View className="p-4 items-center">
-            {profileItems?.map((item, index) => (
-              <SettingsItem
-                key={index}
-                icon={item.icon}
-                label={item.label}
-                onPress={() => navigation.navigate(item.route as keyof RootStackParamList)}
-              />
-            ))}
-
-            <TouchableOpacity className="mt-2 flex-row items-center border p-3 rounded-xl border-red-700 bg-red-50">
-              <Image
-                source={require("../../../assets/restroIcon/logout-02.png")}
-                className="w-[30] h-[30]"
-              />
-              <Text className="text-[#A13430] ml-2">Log out</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-
-
-
   // return (
   //   <>
   //     <StatusBar style="dark" translucent backgroundColor="transparent" />
@@ -147,7 +72,7 @@ export default function YourComponent() {
   //     <View style={{ width: "100%", height: 200, position: "relative", backgroundColor: "white" }}>
   //       {/* Left SVG */}
   //       <LeftSVG
-  //         width={isTablet ? width * 0.8 : width * 0.65}
+  //         width={width * 0.65}
   //         height="100%"
   //         style={{
   //           position: "absolute",
@@ -159,7 +84,7 @@ export default function YourComponent() {
 
   //       {/* Right SVG */}
   //       <RightSVG
-  //         width={isTablet ? width * 0.75 : width * 0.6}
+  //         width={width * 0.6}
   //         height="100%"
   //         style={{
   //           position: "absolute",
@@ -198,7 +123,7 @@ export default function YourComponent() {
   //               key={index}
   //               icon={item.icon}
   //               label={item.label}
-  //               onPress={() => navigation.navigate(item.route)}
+  //               onPress={() => navigation.navigate(item.route as keyof RootStackParamList)}
   //             />
   //           ))}
 
@@ -214,6 +139,84 @@ export default function YourComponent() {
   //     </SafeAreaView>
   //   </>
   // );
+
+
+
+  return (
+    <>
+      <StatusBar style="dark" translucent backgroundColor="transparent" />
+
+      {/* 🔥 Header area including SVGs */}
+      <View style={{ width: "100%", height: height*0.26, position: "relative", backgroundColor: "white" }}>
+        {/* Left SVG */}
+        <LeftSVG
+          width={isTablet ? width * 0.8 : width * 0.65}
+          height="100%"
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            zIndex: 1,
+          }}
+        />
+
+        {/* Right SVG */}
+        <RightSVG
+          width={isTablet ? width * 0.75 : width * 0.6}
+          height="100%"
+          style={{
+            position: "absolute",
+            right: 0,
+            top: 0,
+            zIndex: 1,
+          }}
+        />
+
+        {/* Title */}
+        <Text
+          className="font-robotoBold absolute z-10 text-white text-2xl left-1/2 -translate-x-1/2"
+          style={{ top: insets.top + 10 }}
+        >
+          Profile
+        </Text>
+
+        {/* Avatar */}
+        <View className="w-[100] h-[100] absolute z-10 overflow-hidden rounded-full left-1/2 bottom-0 -translate-x-1/2 border-4 border-white">
+          <Image
+            source={require("../../../assets/restroIcon/tikaImg.jpg")}
+            style={{ width: "100%", height: "100%" }}
+            resizeMode="cover"
+          />
+        </View>
+      </View>
+
+      {/* ✅ Content Area */}
+      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+        <Text className="text-center mb-2 font-robotoBold">Lukas Wagner</Text>
+
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View className="p-4 items-center">
+            {profileItems?.map((item, index) => (
+              <SettingsItem
+                key={index}
+                icon={item.icon}
+                label={item.label}
+                onPress={() => navigation.navigate(item.route)}
+              />
+            ))}
+
+            <TouchableOpacity className="mt-2 flex-row items-center border p-3 rounded-xl border-red-700 bg-red-50">
+              <Image
+                source={require("../../../assets/restroIcon/logout-02.png")}
+                className="w-[30] h-[30]"
+              />
+              <Text className="text-[#A13430] ml-2">Log out</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
+  );
 
   
 }
