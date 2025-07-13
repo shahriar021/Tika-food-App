@@ -40,17 +40,17 @@ const EditProfile = () => {
 
             <Text className='font-robotoBold text-xl text-[#33363F]'>Current Password</Text>
             <View className='flex-row items-center border rounded-xl border-gray-400 mt-2 mb-2 p-1'>
-                <TextInput className=' flex-1' />
+                <TextInput className=' flex-1 p-2' />
             </View>
 
             <Text className='font-robotoBold text-xl text-[#33363F]'>New Password</Text>
             <View className='flex-row items-center border rounded-xl border-gray-400 mt-2 mb-2 p-1'>
-                <TextInput className=' flex-1' />
+                <TextInput className=' flex-1 p-2' />
             </View>
 
             <Text className='font-robotoBold text-xl text-[#33363F]'>Confirm New Password</Text>
             <View className='flex-row items-center border rounded-xl border-gray-400 mt-2 mb-2 p-1'>
-                <TextInput className=' flex-1' />
+                <TextInput className=' flex-1 p-2' />
             </View>
 
             <View className='flex-row gap-3 items-center mt-3 mb-3'>
