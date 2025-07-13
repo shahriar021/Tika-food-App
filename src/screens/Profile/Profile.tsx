@@ -20,6 +20,7 @@ import { profileItems } from "../../constants/profileItems";
 // ✅ SVG imports as components
 import LeftSVG from "../../../assets/restroIcon/leftSVG.svg";
 import RightSVG from "../../../assets/restroIcon/rightSVG.svg";
+import { scale, verticalScale } from "react-native-size-matters";
 
 const { width } = Dimensions.get("window");
 
@@ -181,7 +182,7 @@ export default function YourComponent() {
         </Text>
 
         {/* Avatar */}
-        <View className="w-[100] h-[100] absolute z-10 overflow-hidden rounded-full left-1/2 bottom-0 -translate-x-1/2 border-4 border-white">
+        <View className=" absolute z-10 overflow-hidden rounded-full left-1/2 bottom-0 -translate-x-1/2 border-4 border-white" style={{width:scale(100),height:verticalScale(100)}}>
           <Image
             source={require("../../../assets/restroIcon/tikaImg.jpg")}
             style={{ width: "100%", height: "100%" }}
