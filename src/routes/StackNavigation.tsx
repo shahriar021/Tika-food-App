@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { BottomNavigation } from "./BottomNavigation";
 import {
@@ -27,11 +27,23 @@ import TrackOrder from "src/screens/Orders/TrackOrder";
 import ViewDetails from "src/screens/Orders/ViewDetails";
 import PaymentOption from "src/screens/Payment/PaymentOption";
 import SpecialInstructions from "src/screens/Cart/SpecialInstructions";
+import { RiderBottomNavigation } from "./RiderBottomNavigation";
+import { store } from "src/redux/store";
+import { useSelector } from "react-redux";
+import { ActivityIndicator } from "react-native";
+import { useAppSelector } from "src/redux/hooks";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
   const routeNameRef = useRef<string | null>(null);
   const navigationRef = useRef<any>(null);
+  const userType = useAppSelector((store)=>store.auth.userType)
+
+  console.log(userType,"userType")
+
+  if(!userType){
+    <ActivityIndicator size="large"/>
+  }
 
   return (
     
@@ -49,13 +61,13 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
           // headerRight: () => <NavRight routeName={routeNameRef.current} />,
         }}
       >
-        <Stack.Screen
+        {<Stack.Screen
           name="BottomScreen"
-          component={BottomNavigation}
+          component={userType==="user"?BottomNavigation:RiderBottomNavigation}
           options={{
             headerShown: false,
           }}
-        />
+        />}
         {/* <Stack.Screen name="Notification" component={} /> */}
         <Stack.Screen name="Profile" options={{headerShown:false}} component={Profile} />
         <Stack.Screen name="Log in" component={LoginScreen} />
@@ -81,6 +93,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         <Stack.Screen name="View Details" component={ViewDetails}/>
         <Stack.Screen name="Payment Options" component={PaymentOption}/>
         <Stack.Screen name="Special Instructions" component={SpecialInstructions}/>
+        
       </Stack.Navigator>
     // </NavigationContainer>
   );

@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { Entypo, Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch } from "react-redux";
-import { setUser } from "src/redux/features/auth/authSlice";
+import { setToken, setUser, setUserType } from "src/redux/features/auth/authSlice";
 import { useLoginMutation } from "src/redux/features/auth/authApi";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
@@ -34,23 +34,29 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    if (email !== "" && password !== "") {
-      try {
-        const output = { email, password };
-        const result = await postLogin(output).unwrap();
-        if (result?.status) {
-          const { data } = result;
-          dispatch(setUser({ user: data, Credential: output }));
-        }
-        if (!result?.status) {
-          Alert.alert(result.message);
-        }
-      } catch (err: any) {
-        Alert.alert("Something went wrong!", err);
-      }
-    } else {
-      Alert.alert("Please Enter a valid Email or password.");
-    }
+    // if (email !== "" && password !== "") {
+    //   try {
+    //     const output = { email, password };
+    //     const result = await postLogin(output).unwrap();
+    //     if (result?.status) {
+    //       const { data } = result;
+    //       dispatch(setUser({ user: data, Credential: output }));
+    //     }
+    //     if (!result?.status) {
+    //       Alert.alert(result.message);
+    //     }
+    //   } catch (err: any) {
+    //     Alert.alert("Something went wrong!", err);
+    //   }
+    // } else {
+    //   Alert.alert("Please Enter a valid Email or password.");
+    // }
+    console.log(email,"email.")
+    const normalizedEmail = email.trim().toLowerCase();
+const type = normalizedEmail === "user@gmail.com" ? "user" : "rider";
+    console.log(type,"type")
+    dispatch(setToken(true))
+    dispatch(setUserType(type))
   };
   const [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../../../assets/fonts/Roboto-Bold.ttf'),
@@ -62,7 +68,6 @@ const LoginScreen = () => {
     navigation.navigate("VerifyEmail" as never)
   }
 
-  console.log(roleOff)
 
   return (
     <SafeAreaView className="flex-1 bg-[#B42315] items-center">
@@ -87,7 +92,7 @@ const LoginScreen = () => {
             <Text className="mb-2">Sigin in to continue exploring the best deals</Text>
 
             <Text className="mt-1 mb-1">Email</Text>
-            <TextInput className="border rounded-xl mt-1 border-gray-300 mb-1 p-3" />
+            <TextInput className="border rounded-xl mt-1 border-gray-300 mb-1 p-3"  onChangeText={setEmail}/>
 
             <Text className="mt-1 mb-1">Password</Text>
             <View className="flex-row border border-gray-300 rounded-xl items-center px-3">
@@ -105,7 +110,7 @@ const LoginScreen = () => {
             </View>
 
             <View className="items-center">
-              <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={() => navigation.navigate("Forget Password" as never)}>
+              <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={handleLogin}>
                 <LinearGradient colors={["#DD0F14", "#C21A1E"]} style={{ width, borderRadius: 999, alignItems: "center" }}>
                   <Text className="text-white p-3 ">Sign In</Text>
                 </LinearGradient>
