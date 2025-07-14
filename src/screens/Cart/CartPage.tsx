@@ -22,7 +22,7 @@ const CartPage = () => {
         })
     }, [navigation])
 
-    const handleInstuction=(text)=>{
+    const handleInstuction=(text:string)=>{
         navigation.navigate("Special Instructions",{indicator:text})
     }
 

@@ -23,7 +23,6 @@ const LoginOTPScreen = () => {
     }
   };
 
-  console.log(otpNumbers.join(""))
 
   const handleKeyPress = (e: any, index: any) => {
     if (e.nativeEvent.key === 'Backspace' && otpNumbers[index] === '' && index > 0) {
