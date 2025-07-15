@@ -18,7 +18,8 @@ module.exports = {
         satoshiBold: ["Satoshi-Bold"],
         robotoBold:['Roboto-Bold'],
         nunitoBold:['Nunito-Bold'],
-        robotoRegular:['Roboto-Regular']
+        robotoRegular:['Roboto-Regular'],
+        dmsansBold:['DMSans-Bold']
       },
       colors:{
         darkYellow:'#FFC107',
