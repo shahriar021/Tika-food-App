@@ -32,6 +32,8 @@ import { store } from "src/redux/store";
 import { useSelector } from "react-redux";
 import { ActivityIndicator } from "react-native";
 import { useAppSelector } from "src/redux/hooks";
+import DeliveryRequestView from "src/screens/Request/DeliveryRequest";
+import MapScreen from "src/screens/Map/MapScreen";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -93,6 +95,9 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         <Stack.Screen name="View Details" component={ViewDetails}/>
         <Stack.Screen name="Payment Options" component={PaymentOption}/>
         <Stack.Screen name="Special Instructions" component={SpecialInstructions}/>
+
+        <Stack.Screen name="Delivery Request" component={DeliveryRequestView}/>
+        <Stack.Screen name="Map" options={{headerShown:false}} component={MapScreen}/>
         
       </Stack.Navigator>
     // </NavigationContainer>

@@ -15,7 +15,8 @@ const MainLayout = () => {
 
   const [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../../../assets/fonts/Roboto-Bold.ttf'),
-    'Roboto-Regular': require('../../../assets/fonts/Roboto-Regular.ttf')
+    'Roboto-Regular': require('../../../assets/fonts/Roboto-Regular.ttf'),
+    'DMSans-Bold':require('../../../assets/fonts/DMSans-Bold.ttf')
   });
 
   if (!fontsLoaded) return null;
