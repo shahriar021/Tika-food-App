@@ -6,6 +6,8 @@ import CartPage from "src/screens/Cart/CartPage";
 import MyOrders from "src/screens/Orders/MyOrders";
 import { scale, verticalScale } from "react-native-size-matters";
 import RiderHomePage from "src/screens/Home/RiderHomePage";
+import RiderOrder from "src/screens/Orders/RiderOrder";
+import EarningList from "src/screens/Earning/EarningList";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -40,73 +42,7 @@ export const RiderBottomNavigation = () => {
           alignItems: "center",
         },
         tabBarShowLabel: false,
-        // tabBarIcon: ({ focused }) => {
-        //   let iconSource;
-
-        //   if (route.name === "Home") {
-        //     iconSource = focused
-        //       ? require("../../assets/restroIcon/home-active.png")
-        //       : require("../../assets/restroIcon/homeInactive.png");
-        //   }
-        //   else if (route.name === "Cart") {
-        //     iconSource = focused
-        //       ? require("../../assets/restroIcon/cart-active.png")
-        //       : require("../../assets/restroIcon/cart-inactive.png");
-        //   }
-        //   else if (route.name === "My Orders") {
-        //     iconSource = focused
-        //       ? require("../../assets/restroIcon/order-active.png")
-        //       : require("../../assets/restroIcon/order-inactive.png");
-        //   } else if (route.name === "Profile") {
-        //     iconSource = focused
-        //       ? require("../../assets/restroIcon/profile-active.png")
-        //       : require("../../assets/restroIcon/profile-inactive.png");
-        //   }
-
-        //   if (focused) {
-        //     return (
-        //       <View
-        //         style={{
-        //           flexDirection: "row",
-        //           alignItems: "center",
-        //           justifyContent: "center",
-        //           backgroundColor: ACTIVE_BG_COLOR,
-        //           paddingHorizontal: 12,
-        //           paddingVertical: 8,
-        //           borderRadius: 30,
-
-        //           // minWidth: scale(100),
-        //           // minHeight: 50,
-        //           // flexShrink: 1,
-        //           // maxWidth: width * 0.7,
-        //           minWidth: scale(100),
-        //           maxWidth: scale(100),
-        //           zIndex: 10,
-        //         }}
-        //       >
-        //         <Image source={iconSource} style={{ width: 24, height: 24 }} resizeMode="contain" />
-        //         <Text
-        //           numberOfLines={1}
-        //           style={{
-        //             color: ACTIVE_ICON_COLOR,
-        //             marginLeft: 8,
-        //             fontWeight: "600",
-        //             fontSize: width > 450 ? 14 : 12,
-        //             flexShrink: 1,
-        //           }}
-        //         >
-        //           {route.name === "Profile"
-        //             ? "Profile"
-        //             : route.name === "Restaurant Order"
-        //               ? "Schedule"
-        //               : route.name}
-        //         </Text>
-        //       </View>
-        //     );
-        //   } else {
-        //     return <Image source={iconSource} style={{ width: scale(24), height: verticalScale(24) }} resizeMode="contain" />;
-        //   }
-        // }
+       
         tabBarIcon: ({ focused }) => {
           let iconSource;
           const routeIndex = TAB_NAMES.indexOf(route.name);
@@ -117,14 +53,14 @@ export const RiderBottomNavigation = () => {
             iconSource = focused
               ? require("../../assets/restroIcon/home-active.png")
               : require("../../assets/restroIcon/homeInactive.png");
-          } else if (route.name === "Cart") {
-            iconSource = focused
-              ? require("../../assets/restroIcon/cart-active.png")
-              : require("../../assets/restroIcon/cart-inactive.png");
-          } else if (route.name === "My Orders") {
+          } else if (route.name === "Order") {
             iconSource = focused
               ? require("../../assets/restroIcon/order-active.png")
               : require("../../assets/restroIcon/order-inactive.png");
+          } else if (route.name === "Earnings") {
+            iconSource = focused
+              ? require("../../assets/restroIcon/Chart.png")
+              : require("../../assets/restroIcon/earningRes.png");
           } else if (route.name === "Profile") {
             iconSource = focused
               ? require("../../assets/restroIcon/profile-active.png")
@@ -132,8 +68,7 @@ export const RiderBottomNavigation = () => {
           }
 
           if (focused) {
-            // Calculate horizontal shift to keep content inside edges
-            // Shift right for first tab, left for last tab, no shift for others
+           
             const translateX = isFirst ? scale(15) : isLast ? -scale(15) : 0;
 
             return (
@@ -184,9 +119,9 @@ export const RiderBottomNavigation = () => {
       })}
     >
       <BottomTabs.Screen name="Home" options={{ headerShown: false }} component={RiderHomePage} />
-      <BottomTabs.Screen name="Cart" component={()=><View/>} />
-      <BottomTabs.Screen name="My Orders" component={()=><View/>} />
-      <BottomTabs.Screen name="Profile" options={{ headerShown: false }} component={()=><View/>} />
+      <BottomTabs.Screen name="Order" component={RiderOrder} />
+      <BottomTabs.Screen name="Earnings" component={EarningList} />
+      <BottomTabs.Screen name="Profile" options={{ headerShown: false }} component={Profile} />
     </BottomTabs.Navigator>
   );
 

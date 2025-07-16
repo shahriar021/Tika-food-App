@@ -16,6 +16,8 @@ const DeliveryRequestView = () => {
                 shadowOpacity: 0, // for iOS
                 borderBottomWidth: 0, // for iOS
             },
+            headerTitleAlign:"center",
+            headerTintColor:"#626262",
             headerLeft: () => (
                 <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
                     <View className='w-[35px] h-[35px] border border-red-100 items-center justify-center rounded-full'>
@@ -86,7 +88,7 @@ const DeliveryRequestView = () => {
                         <Text className='font-robotoBold'>$33.56 <Text className='text-[#9796A1] font-robotoBold'>USD</Text></Text>
                     </View>
 
-                    <TouchableOpacity className='flex-row items-center justify-center gap-1 mt-3 mb-3' onPress={()=>navigation.navigate("Map")}>
+                    <TouchableOpacity className='flex-row items-center justify-center gap-1 mt-3 mb-3' onPress={()=>navigation.navigate("Map" as never)}>
                         <Text className='text-[#BD2923]'>View Map Route</Text>
                         <AntDesign name="arrowright" size={24} color="#BD2923" />
                     </TouchableOpacity>
