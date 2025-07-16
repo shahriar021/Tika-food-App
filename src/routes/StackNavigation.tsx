@@ -4,9 +4,6 @@ import { BottomNavigation } from "./BottomNavigation";
 import {
   LoginScreen,
   Profile,
-  OngoingCustomerList,
-  OrderList,
-  Kitchen,
   NearbyRestaurantList,
   HomeScreen,
 } from "src/screens";
@@ -22,18 +19,16 @@ import PopularItems from "src/screens/Restaurant/PopularItems";
 import PopularItemDetails from "src/screens/Restaurant/PopularItemDetails";
 import PaymentAnimation from "src/screens/Payment/PaymentAnimation";
 import PaymentInfo from "src/screens/Payment/PaymentInfo";
-import CartPage from "src/screens/Cart/CartPage";
 import TrackOrder from "src/screens/Orders/TrackOrder";
 import ViewDetails from "src/screens/Orders/ViewDetails";
 import PaymentOption from "src/screens/Payment/PaymentOption";
 import SpecialInstructions from "src/screens/Cart/SpecialInstructions";
 import { RiderBottomNavigation } from "./RiderBottomNavigation";
-import { store } from "src/redux/store";
-import { useSelector } from "react-redux";
 import { ActivityIndicator } from "react-native";
 import { useAppSelector } from "src/redux/hooks";
 import DeliveryRequestView from "src/screens/Request/DeliveryRequest";
 import MapScreen from "src/screens/Map/MapScreen";
+import EarningListView from "src/screens/Earning/EarningListView";
 const Stack = createStackNavigator();
 
 const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
@@ -73,9 +68,6 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         {/* <Stack.Screen name="Notification" component={} /> */}
         <Stack.Screen name="Profile" options={{headerShown:false}} component={Profile} />
         <Stack.Screen name="Log in" component={LoginScreen} />
-        <Stack.Screen name="Ongoing Customer" component={OngoingCustomerList} />
-        <Stack.Screen name="Order List" component={OrderList} />
-        <Stack.Screen name="Kitchen" component={Kitchen} />
 
         <Stack.Screen name="about" component={AboutUs}/>
         <Stack.Screen name="Privacy" component={Privacy}/>
@@ -98,6 +90,7 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
 
         <Stack.Screen name="Delivery Request" component={DeliveryRequestView}/>
         <Stack.Screen name="Map" options={{headerShown:false}} component={MapScreen}/>
+        <Stack.Screen name="Earning List View" component={EarningListView}/>
         
       </Stack.Navigator>
     // </NavigationContainer>

@@ -19,7 +19,8 @@ module.exports = {
         robotoBold:['Roboto-Bold'],
         nunitoBold:['Nunito-Bold'],
         robotoRegular:['Roboto-Regular'],
-        dmsansBold:['DMSans-Bold']
+        dmsansBold:['DMSans-Bold'],
+        interBold:['Inter_18pt-Bold']
       },
       colors:{
         darkYellow:'#FFC107',
