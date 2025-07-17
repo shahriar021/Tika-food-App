@@ -32,19 +32,19 @@ export const profileItems = [
   {
     icon: require("../../assets/restroIcon/Time_progress_duotone_line.png"),
     label: "History",
-    route:"Privacy",
+    route:"History",
     type:'rider'
   },
   {
     icon: require("../../assets/restroIcon/Server_light.png"),
     label: "Withdraws",
-    route:"Terms",
+    route:"Withdraw",
     type:'rider'
   },
   {
     icon: require("../../assets/restroIcon/bank.png"),
     label: "Bank Details",
-    route:"Terms",
+    route:"Bank",
     type:'rider'
   },
 ];

@@ -1,42 +1,46 @@
 import React, { useRef, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { BottomNavigation } from "./BottomNavigation";
-import {
+import { 
   LoginScreen,
   Profile,
   NearbyRestaurantList,
-  HomeScreen,
+  AboutUs,
+  Privacy,
+  Terms,
+  Address,
+  Setting,
+  ChangePassword,
+  EditProfile,
+  RestaurantProfile,
+  PopularItems,
+  PopularItemDetails,
+  PaymentAnimation,
+  PaymentInfo,
+  TrackOrder,
+  ViewDetails,
+  PaymentOption,
+  SpecialInstructions,
+  DeliveryRequestView,
+  MapScreen,
+  EarningListView,
+  Withdraw,
+  WithdrawRequest,
+  Bank,
+  BankEdit,
+  History
 } from "src/screens";
-import AboutUs from "src/screens/Profile/AboutUs";
-import Privacy from "src/screens/Profile/Privacy";
-import Terms from "src/screens/Profile/Terms";
-import Address from "src/screens/Profile/Address";
-import Setting from "src/screens/Profile/Setting";
-import ChangePassword from "src/screens/Profile/ChangePassword";
-import EditProfile from "src/screens/Profile/EditProfile";
-import RestaurantProfile from "src/screens/Restaurant/RestaurantProfile";
-import PopularItems from "src/screens/Restaurant/PopularItems";
-import PopularItemDetails from "src/screens/Restaurant/PopularItemDetails";
-import PaymentAnimation from "src/screens/Payment/PaymentAnimation";
-import PaymentInfo from "src/screens/Payment/PaymentInfo";
-import TrackOrder from "src/screens/Orders/TrackOrder";
-import ViewDetails from "src/screens/Orders/ViewDetails";
-import PaymentOption from "src/screens/Payment/PaymentOption";
-import SpecialInstructions from "src/screens/Cart/SpecialInstructions";
+
 import { RiderBottomNavigation } from "./RiderBottomNavigation";
 import { ActivityIndicator } from "react-native";
 import { useAppSelector } from "src/redux/hooks";
-import DeliveryRequestView from "src/screens/Request/DeliveryRequest";
-import MapScreen from "src/screens/Map/MapScreen";
-import EarningListView from "src/screens/Earning/EarningListView";
+
+
 const Stack = createStackNavigator();
 
-const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
-  const routeNameRef = useRef<string | null>(null);
-  const navigationRef = useRef<any>(null);
+const StackNavigation = () => {
   const userType = useAppSelector((store)=>store.auth.userType)
 
-  console.log(userType,"userType")
 
   if(!userType){
     <ActivityIndicator size="large"/>
@@ -92,6 +96,11 @@ const StackNavigation = ({ setCurrentScreen }: { setCurrentScreen: any }) => {
         <Stack.Screen name="Map" options={{headerShown:false}} component={MapScreen}/>
         <Stack.Screen name="Earning List View" component={EarningListView}/>
         
+        <Stack.Screen name="Withdraw" component={Withdraw}/>
+        <Stack.Screen name="Withdraw Request" component={WithdrawRequest}/>
+        <Stack.Screen name="Bank" component={Bank}/>
+        <Stack.Screen name="Bank Edit" component={BankEdit}/>
+        <Stack.Screen name="History" component={History}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );

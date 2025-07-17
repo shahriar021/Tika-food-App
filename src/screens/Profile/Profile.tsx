@@ -45,7 +45,7 @@ const isTablet = width > 768;
 
 export default function YourComponent() {
   const userType=useAppSelector((store)=>store.auth.userType)
-  console.log(userType,"user type")
+  
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp>();
 
