@@ -27,7 +27,8 @@ const SignUpRider = ({ setIsSignIn, handleVerify, setRoleOff }: any) => {
 
 
   return (
-    <ScrollView className="mt-4 flex-1 w-full " showsVerticalScrollIndicator={false}>
+    <View>
+    <ScrollView className="mt-4 flex-1  " showsVerticalScrollIndicator={false}>
       <Text className="font-robotoBold text-2xl text-left mb-2">Create New Account Rider</Text>
       <Text className="mb-2">Please fill your detail information</Text>
 
@@ -41,7 +42,7 @@ const SignUpRider = ({ setIsSignIn, handleVerify, setRoleOff }: any) => {
 
 
 
-      <View>
+      <View className='' >
         <Text className="mt-1 mb-1">Upload Valid ID</Text>
         <TouchableOpacity onPress={handleTakePhoto} className='border border-gray-200 border-dashed mt-3 items-center p-3 rounded-md'>
           {photo ? (
@@ -136,6 +137,7 @@ const SignUpRider = ({ setIsSignIn, handleVerify, setRoleOff }: any) => {
         </TouchableOpacity>
       </View>
     </ScrollView>
+    </View>
   )
 }
 

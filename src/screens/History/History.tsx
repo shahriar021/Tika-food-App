@@ -1,11 +1,12 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native'
+import React, { useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Entypo } from '@expo/vector-icons'
 import { scale, verticalScale } from 'react-native-size-matters'
 
 const History = () => {
 
+    const [hisList] = useState(Array.from({ length: 10 }, (_, i) => i + 1))
     const navigation = useNavigation()
 
     useLayoutEffect(() => {
@@ -28,32 +29,29 @@ const History = () => {
     }, [navigation])
 
     return (
-        <View className='flex-1  p-3'>
+        <View className='flex-1  p-1 '>
+            <ScrollView contentContainerStyle={{paddingBottom:100}}>
+                {hisList.map(i => <View className=' flex-row justify-between items-center border border-[#0000000D] rounded-2xl p-2  overflow-hidden mt-1 mb-2 gap-1' style={{
+                    minHeight: verticalScale(100),
+                    maxHeight: verticalScale(140),
+                }} >
+                    <View style={{ width: scale(80), height: "100%" }} className=' rounded-xl overflow-hidden'>
+                        <Image source={require("../../../assets/restroIcon/nearbyRes.png")} style={{ width: "100%", height: "100%", borderRadius: 11 }} />
+                    </View>
 
-            <View className='flex-row justify-between items-center border border-[#0000000D] rounded-2xl p-2  overflow-hidden mt-1 mb-2 shadow-slate-500' style={{
-                height: verticalScale(100),// Shadow for iOS
-                shadowColor: '#000', // iOS shadow color
-                shadowOffset: { width: 0, height: 4 }, // iOS shadow offset
-                shadowOpacity: 0.1, // iOS shadow opacity
-                shadowRadius: 6, // iOS shadow blur radius
-                elevation: 5, // Android shadow (depth)
-            }} >
-                <View style={{ width: scale(80), height: "100%" }} className=' rounded-xl overflow-hidden'>
-                    <Image source={require("../../../assets/restroIcon/nearbyRes.png")} style={{ width: "100%", height: "100%", borderRadius: 11 }} />
-                </View>
+                    <View className='flex-col gap-1 py-3 flex-1'>
+                        <Text className='text-[#33363F]' numberOfLines={1}>#ORD-78329</Text>
+                        <Text className='text-[#33363F]' numberOfLines={1}>From: KFC Main Street</Text>
+                        <Text className='text-[#33363F]' numberOfLines={1}>To: John Doe, Elm Street</Text>
+                        <Text className='text-[#33363F]' numberOfLines={1}>Delivered at: 2:45 PM</Text>
+                        <Text className='text-[#33363F]' numberOfLines={1}>Earnings: $5.75</Text>
+                    </View>
 
-                <View className='flex-col gap-2'>
-                    <Text className='text-[#33363F]'>#ORD-78329</Text>
-                    <Text className='text-[#33363F]'>From: KFC Main Street</Text>
-                    <Text className='text-[#33363F]'>To: John Doe, Elm Street</Text>
-                    <Text className='text-[#33363F]'>Delivered at: 2:45 PM</Text>
-                    <Text className='text-[#33363F]'>Earnings: $5.75</Text>
-                </View>
-
-                <View className='border border-[#308960] bg-green-100 items-center p-2 rounded-full'>
-                    <Text className='text-[#308960]'>Completed</Text>
-                </View>
-            </View>
+                    <View className='border border-[#308960] bg-green-100 items-center p-2 rounded-full'>
+                        <Text className='text-[#308960]'>Completed</Text>
+                    </View>
+                </View>)}
+            </ScrollView>
 
         </View>
     )

@@ -16,12 +16,13 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { Entypo } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { profileItems } from "../../constants/profileItems";
+import { setToken, setUser, setUserType } from "src/redux/features/auth/authSlice";
 
 // ✅ SVG imports as components
 import LeftSVG from "../../../assets/restroIcon/leftSVG.svg";
 import RightSVG from "../../../assets/restroIcon/rightSVG.svg";
 import { scale, verticalScale } from "react-native-size-matters";
-import { useAppSelector } from "src/redux/hooks";
+import { useAppDispatch, useAppSelector } from "src/redux/hooks";
 
 const { width } = Dimensions.get("window");
 
@@ -48,6 +49,7 @@ export default function YourComponent() {
   
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<NavigationProp>();
+  const dispatch = useAppDispatch();
 
   const {width,height}=useWindowDimensions()
 
@@ -67,6 +69,11 @@ export default function YourComponent() {
       </View>
     </TouchableOpacity>
   );
+
+  const handleLogout=()=>{
+       dispatch(setToken(false))
+          dispatch(setUserType(""))
+  }
 
   return (
     <>
@@ -131,7 +138,7 @@ export default function YourComponent() {
               />
             ))}
 
-            <TouchableOpacity className="mt-2 flex-row items-center border p-3 rounded-xl border-red-700 bg-red-50">
+            <TouchableOpacity className="mt-2 flex-row items-center border p-3 rounded-xl border-red-700 bg-red-50" onPress={handleLogout}>
               <Image
                 source={require("../../../assets/restroIcon/logout-02.png")}
                 className="w-[30] h-[30]"

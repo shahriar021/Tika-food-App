@@ -33,7 +33,7 @@ const OTPScreen = () => {
 
   const handleVerify = () => {
     const code = otpNumbers.join('');
-    navigation.navigate("OTP Screen" as never);
+    navigation.navigate("Verification Page" as never);
   };
 
   useLayoutEffect(() => {

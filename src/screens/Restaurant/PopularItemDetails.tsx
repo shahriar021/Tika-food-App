@@ -38,7 +38,7 @@ const PopularItemDetails = () => {
                 </View>
 
                 <View className="items-center mt-3">
-                    <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={()=>navigation.navigate("Payment Animation")}>
+                    <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={()=>navigation.navigate('BottomScreen', { screen: 'Cart' })}>
                         <LinearGradient colors={["#DD0F14", "#C21A1E"]} style={{ width, borderRadius: 999, alignItems: "center" }}>
                             <Text className="text-white p-3 ">Add To Cart</Text>
                         </LinearGradient>

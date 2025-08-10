@@ -37,7 +37,7 @@ const VerificationPage = () => {
       </View>
       <View className='items-center' >
         <Text className='text-[#28A15C] font-robotoBold text-2xl'>Your application is under review</Text>
-        <Text  className='text-center font-robotoRegular text-xl'>We will notify you as soon as youraccount has been approved
+        <Text  className='text-center font-robotoRegular text-xl'>We will notify you as soon as your account has been approved
         </Text>
       </View>
       {/*  */}
