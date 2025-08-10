@@ -34,12 +34,14 @@ import {
 import { RiderBottomNavigation } from "./RiderBottomNavigation";
 import { ActivityIndicator } from "react-native";
 import { useAppSelector } from "src/redux/hooks";
+import AvailableRequest from "src/screens/Request/AvailableRequest";
 
 
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
   const userType = useAppSelector((store)=>store.auth.userType)
+  // const userType="user"
 
 
   if(!userType){
@@ -101,6 +103,7 @@ const StackNavigation = () => {
         <Stack.Screen name="Bank" component={Bank}/>
         <Stack.Screen name="Bank Edit" component={BankEdit}/>
         <Stack.Screen name="History" component={History}/>
+        <Stack.Screen name="Available Request" component={AvailableRequest}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );

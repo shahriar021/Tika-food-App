@@ -24,7 +24,7 @@
       },
       "permissions": [],
       "useNextNotificationsApi": true,
-      "package": "com.sparktech.sas",
+      "package": "com.sparktech.tikafood",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyC4fsrgciACjhUacg9umvRHflrJJHFovdY"

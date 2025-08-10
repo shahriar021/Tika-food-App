@@ -11,7 +11,6 @@ const MainLayout = () => {
   // const token = useAppSelector((state) => state.auth.user?.access_token);
   const token = useAppSelector((state)=>state.auth.token);
   // const token = 0;
-  const [, setCurrentScreen] = useState("");
 
   const [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../../../assets/fonts/Roboto-Bold.ttf'),

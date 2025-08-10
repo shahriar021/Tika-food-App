@@ -21,17 +21,7 @@ const SignUpUser = ({setIsSignIn,handleVerify,setRoleOff}:any) => {
             <View className="flex-row border border-gray-300 rounded-xl items-center px-3">
               <TextInput className="flex-1 py-3" /><Feather name="eye-off" size={24} color="gray" />
             </View>
-            <View className="mt-3 flex-row items-center justify-between">
-              <View className="flex-row items-center gap-2">
-                <TouchableOpacity>
-                  <Text>
-                    <Entypo name="circle" size={24} color="gray" />
-                  </Text>
-                </TouchableOpacity>
-                <Text>Remember Me</Text>
-              </View>
-              <Text className="text-red-700">Forget Password?</Text>
-            </View>
+            
 
             <View className="items-center">
               <TouchableOpacity className=" items-center mt-3 rounded-full  overflow-hidden" style={{ width: width * 0.9 }} onPress={handleVerify}>

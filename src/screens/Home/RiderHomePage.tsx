@@ -37,12 +37,12 @@ const RiderHomePage = () => {
                         <Text className='font-robotoBold text-xl'>Available Requests</Text>
                         <Text className='text-[#BA2720]'>(12)</Text>
                     </View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.navigate("Available Request")}>
                         <Text className='text-[#BA2720] text-xl'>See All..</Text>
                     </TouchableOpacity>
                 </View>
 
-                <ScrollView contentContainerStyle={{ padding: 10,  }} showsVerticalScrollIndicator={false}>
+                <ScrollView contentContainerStyle={{   }} showsVerticalScrollIndicator={false}>
                     {/* card start */}
                     {requestList.map(item=>
                     <TouchableOpacity key={item} className='border p-1 border-gray-200 rounded-xl mb-3' onPress={()=>navigation.navigate("Delivery Request")}>
