@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import StackNavigation from "src/routes/StackNavigation";
 import { NavigationContainer } from "@react-navigation/native";
