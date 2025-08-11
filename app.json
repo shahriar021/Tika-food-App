@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Tika Food",
-    "slug": "Tika Food",
+    "slug": "Tika-food",
     "version": "1.2.34",
     "orientation": "portrait",
     "icon": "./assets/tika.png",
@@ -22,7 +22,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [],
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
       "useNextNotificationsApi": true,
       "package": "com.sparktech.tikafood",
       "config": {
@@ -60,7 +62,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "b201e9f7-b613-48e1-8105-5a13fc2da0d9"
+        "projectId": "a26188a5-d595-41b2-b2fb-ff7953f64a2d"
       }
     }
   }

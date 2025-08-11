@@ -15,17 +15,10 @@ import * as Font from "expo-font";
 const { width, height } = Dimensions.get("screen");
 
 const DashboardScreen = ({ navigation }: { navigation: any }) => {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
-  const [numbers] = useState(Array.from({length:30},(_,i)=>i+1))
+  
+  const [numbers] = useState(Array.from({ length: 30 }, (_, i) => i + 1))
 
-  useEffect(() => {
-    Font.loadAsync({
-      "Nunito-Bold": require("../../../assets/fonts/Nunito-Bold.ttf"),
-      // ... other fonts
-    }).then(() => setFontsLoaded(true));
-  }, []);
-
-  if (!fontsLoaded) return null;
+ 
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -44,135 +37,137 @@ const DashboardScreen = ({ navigation }: { navigation: any }) => {
           <AntDesign name="search1" size={24} color="gray" />
           <TextInput className="flex-1" placeholder="Seach for restaurants or dishes..." />
         </View>
-       <ScrollView contentContainerStyle={{paddingBottom:200}} showsVerticalScrollIndicator={false}>
-         <View className="flex-row justify-between items-center mt-2 mb-2">
-          <Text className="text-2xl font-bold">Nearby Restaurants</Text>
-          <TouchableOpacity className="flex-row items-center " onPress={()=>navigation.navigate("Nearby Restaurants List")}>
-            <Text className="text-red-700">View All</Text>
-            <Entypo name="chevron-small-right" size={24} color="red" />
-          </TouchableOpacity>
-        </View>
-        <ScrollView contentContainerStyle={{ flexDirection: 'row', gap: 10, }} horizontal showsHorizontalScrollIndicator={false}>
-          {numbers.map(item =>
-            
-            <View
-              key={item} // add key
-              className="border border-gray-200 rounded-lg overflow-hidden"
-              style={{
-                width: width * 0.7,  // slightly wider for better content space
-                backgroundColor: "white",
+        <ScrollView contentContainerStyle={{ paddingBottom: 200 }} showsVerticalScrollIndicator={false}>
+          <View className="flex-row justify-between items-center mt-2 mb-2">
+            <Text className="text-2xl font-bold">Nearby Restaurants</Text>
+            <TouchableOpacity className="flex-row items-center " onPress={() => navigation.navigate("Nearby Restaurants List")}>
+              <Text className="text-red-700">View All</Text>
+              <Entypo name="chevron-small-right" size={24} color="red" />
+            </TouchableOpacity>
+          </View>
+          <ScrollView contentContainerStyle={{ flexDirection: 'row', gap: 10, }} horizontal showsHorizontalScrollIndicator={false}>
+            {numbers.map(item =>
 
-                borderRadius: 10,
-                overflow: "hidden", 
-                marginRight: 12,
-              }}
-            >
-              <Image
-                source={require("../../../assets/restroIcon/nearbyRes.png")}
-                style={{ width: "100%", height: 140, resizeMode: "cover" }}
-                className="rounded-t-lg"
-              />
-              <Text className="absolute text-xl font-semibold bg-white p-1 left-3 top-3 rounded-full text-[#19CC49]">
-                Open Now
-              </Text>
-
-              <View
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("Restaurant Profile")}
+                key={item} // add key
+                className="border border-gray-200 rounded-lg overflow-hidden"
                 style={{
-                  paddingHorizontal: 10,
-                  paddingVertical: 12,
-                  flexShrink: 1,
+                  width: width * 0.7,  // slightly wider for better content space
+                  backgroundColor: "white",
+
+                  borderRadius: 10,
+                  overflow: "hidden",
+                  marginRight: 12,
                 }}
               >
-                <Text
-                  className="font-bold text-xl"
-                  style={{ flexWrap: "wrap" }}
-                  numberOfLines={2} // limit lines to avoid overflow if needed
-                >
-                  Urban Palate
+                <Image
+                  source={require("../../../assets/restroIcon/nearbyRes.png")}
+                  style={{ width: "100%", height: 140, resizeMode: "cover" }}
+                  className="rounded-t-lg"
+                />
+                <Text className="absolute text-xl font-semibold bg-white p-1 left-3 top-3 rounded-full text-[#19CC49]">
+                  Open Now
                 </Text>
 
                 <View
-                  className="flex-row justify-between"
-                  style={{ marginTop: 8 }}
+                  style={{
+                    paddingHorizontal: 10,
+                    paddingVertical: 12,
+                    flexShrink: 1,
+                  }}
                 >
-                  <View className="flex-row items-center gap-2" style={{ flexShrink: 1 }}>
-                    <SimpleLineIcons name="clock" size={20} color="black" />
-                    <Text numberOfLines={1} style={{ flexShrink: 1 }}>
-                      9am - 11 pm
-                    </Text>
+                  <Text
+                    className="font-bold text-xl"
+                    style={{ flexWrap: "wrap" }}
+                    numberOfLines={2} // limit lines to avoid overflow if needed
+                  >
+                    Urban Palate
+                  </Text>
+
+                  <View
+                    className="flex-row justify-between"
+                    style={{ marginTop: 8 }}
+                  >
+                    <View className="flex-row items-center gap-2" style={{ flexShrink: 1 }}>
+                      <SimpleLineIcons name="clock" size={20} color="black" />
+                      <Text numberOfLines={1} style={{ flexShrink: 1 }}>
+                        9am - 11 pm
+                      </Text>
+                    </View>
+                    <Text>1.2 km away</Text>
                   </View>
-                  <Text>1.2 km away</Text>
                 </View>
-              </View>
-            </View>
+              </TouchableOpacity>
 
-          )}
-        </ScrollView>
-        {/*  */}
-        <View className="flex-row justify-between items-center mt-2 mb-2">
-          <Text className="text-2xl font-bold">Popular Items</Text>
-          <TouchableOpacity className="flex-row items-center " onPress={()=>navigation.navigate("Popular Items")}>
-            <Text className="text-red-700">View All</Text>
-            <Entypo name="chevron-small-right" size={24} color="red" />
-          </TouchableOpacity>
-        </View>
-        <ScrollView contentContainerStyle={{ flexDirection: 'row', gap: 10, }} horizontal showsHorizontalScrollIndicator={false}>
-          {numbers.map(item =>
-            
-            <View
-              key={item} // add key
-              className="border border-gray-200 rounded-lg overflow-hidden"
-              style={{
-                width: width * 0.5,  // slightly wider for better content space
-                backgroundColor: "white",
+            )}
+          </ScrollView>
+          {/*  */}
+          <View className="flex-row justify-between items-center mt-2 mb-2">
+            <Text className="text-2xl font-bold">Popular Items</Text>
+            <TouchableOpacity className="flex-row items-center " onPress={() => navigation.navigate("Popular Items")}>
+              <Text className="text-red-700">View All</Text>
+              <Entypo name="chevron-small-right" size={24} color="red" />
+            </TouchableOpacity>
+          </View>
+          <ScrollView contentContainerStyle={{ flexDirection: 'row', gap: 10, }} horizontal showsHorizontalScrollIndicator={false}>
+            {numbers.map(item =>
 
-                borderRadius: 10,
-                overflow: "hidden", 
-                marginRight: 12,
-              }}
-            >
-              <Image
-                source={require("../../../assets/restroIcon/popularImg.png")}
-                style={{ width: "100%", height: 140, resizeMode: "cover" }}
-                className="rounded-t-lg relative"
-              />
-             <View className="flex-row justify-between items-center absolute  w-full">
-               <View className=" flex-row items-center border border-red-700 rounded-full bg-white  top-2 left-2">
-                <Text className="text-red-700 font-semibold mx-2">$</Text>
-                <Text className="text-black font-semibold">10.35</Text>
-                <View className="bg-red-100 rounded-full p-1"><Text className="text-red-800">-9%</Text></View>
-              </View>
-
-              <View className=" right-2 top-2 bg-[#C21A1E] rounded-full p-1">
-                <Image source={require("../../../assets/restroIcon/Basket.png")} style={{width:30,height:30}}/>
-              </View>
-             </View>
-              
-
-              <View
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("Popular Items Details")}
+                key={item} // add key
+                className="border border-gray-200 rounded-lg overflow-hidden"
                 style={{
-                  paddingHorizontal: 10,
-                  paddingVertical: 12,
-                  flexShrink: 1,
+                  width: width * 0.5,  // slightly wider for better content space
+                  backgroundColor: "white",
+
+                  borderRadius: 10,
+                  overflow: "hidden",
+                  marginRight: 12,
                 }}
               >
-                <Text
-                  className="font-bold text-xl"
-                  style={{ flexWrap: "wrap" }}
-                  numberOfLines={2} // limit lines to avoid overflow if needed
+                <Image
+                  source={require("../../../assets/restroIcon/popularImg.png")}
+                  style={{ width: "100%", height: 140, resizeMode: "cover" }}
+                  className="rounded-t-lg relative"
+                />
+                <View className="flex-row justify-between items-center absolute  w-full">
+                  <View className=" flex-row items-center border border-red-700 rounded-full bg-white  top-2 left-2">
+                    <Text className="text-red-700 font-semibold mx-2">$</Text>
+                    <Text className="text-black font-semibold">10.35</Text>
+                    <View className="bg-red-100 rounded-full p-1"><Text className="text-red-800">-9%</Text></View>
+                  </View>
+
+                  <View className=" right-2 top-2 bg-[#C21A1E] rounded-full p-1">
+                    <Image source={require("../../../assets/restroIcon/Basket.png")} style={{ width: 30, height: 30 }} />
+                  </View>
+                </View>
+
+
+                <View
+                  style={{
+                    paddingHorizontal: 10,
+                    paddingVertical: 12,
+                    flexShrink: 1,
+                  }}
                 >
-                  Classic CheeseBurger
-                </Text>
+                  <Text
+                    className="font-bold text-xl"
+                    style={{ flexWrap: "wrap" }}
+                    numberOfLines={2} // limit lines to avoid overflow if needed
+                  >
+                    Classic CheeseBurger
+                  </Text>
 
-                <Text>
-                  Beef patty with cheddar chicken.
-                </Text>
-              </View>
-            </View>
+                  <Text>
+                    Beef patty with cheddar chicken.
+                  </Text>
+                </View>
+              </TouchableOpacity>
 
-          )}
+            )}
+          </ScrollView>
         </ScrollView>
-       </ScrollView>
       </View>
     </SafeAreaView>
   );

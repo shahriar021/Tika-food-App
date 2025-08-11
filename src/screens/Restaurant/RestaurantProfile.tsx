@@ -87,11 +87,11 @@ const RestaurantProfile = () => {
 
                 <View className='flex-row items-center mt-3'>
                     <Entypo name="dot-single" size={24} color="black" />
-                    <Text>Happy Hour: 5:00 – 7:00 PM | 2-for-1 Cocktails</Text>
+                    <Text className='w-[95%]'>Happy Hour: 5:00 – 7:00 PM | 2-for-1 Cocktails</Text>
                 </View>
                 <View className='flex-row mt-3 items-center'>
                     <Entypo name="dot-single" size={24} color="black" />
-                    <Text>NikoSafe Verified: Scan QR for Safe Entry   Certified by xxxx Health Dept, 2025</Text>
+                    <Text className='w-[95%]'>NikoSafe Verified: Scan QR for Safe Entry Certified by xxxx Health Dept, 2025</Text>
                 </View>
                 
 
