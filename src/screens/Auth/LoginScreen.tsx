@@ -146,25 +146,12 @@ const LoginScreen = () => {
             </View>
             :
             isUser == "user" ?
-              <SignUpUser setIsSignIn={setIsSignIn} handleVerify={handleVerify} setRoleOff={setRoleOff} />
+              <SignUpUser isUser={isUser} setIsUser={setIsUser} roleOff={roleOff} isSignIn={isSignIn} setIsSignIn={setIsSignIn} handleVerify={handleVerify} setRoleOff={setRoleOff} />
               :
-              <SignUpRider setIsSignIn={setIsSignIn} handleVerify={handleVerify} setRoleOff={setRoleOff} />
+              <SignUpRider isUser={isUser} setIsUser={setIsUser} roleOff={roleOff} isSignIn={isSignIn} setIsSignIn={setIsSignIn} handleVerify={handleVerify} setRoleOff={setRoleOff} />
           }
           {/* role */}
-          {!isSignIn && roleOff && <View className="absolute bg-white p-3 right-5 top-24 border rounded-3xl border-gray-200">
-            <TouchableOpacity className="mb-3 items-center p-2" onPress={() => {
-              setIsUser("user")
-              setRoleOff(false)
-            }}>
-              <Text className="font-robotoRegular text-xl text-red-500">As an User</Text>
-            </TouchableOpacity >
-            <TouchableOpacity className="mt-2 items-center p-2" onPress={() => {
-              setIsUser("rider")
-              setRoleOff(false)
-            }}>
-              <Text className="font-robotoRegular text-xl text-red-500">As a Rider</Text>
-            </TouchableOpacity>
-          </View>}
+         
         </View>
       </ScrollView>
 
