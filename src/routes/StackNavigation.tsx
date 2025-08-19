@@ -35,6 +35,7 @@ import { RiderBottomNavigation } from "./RiderBottomNavigation";
 import { ActivityIndicator } from "react-native";
 import { useAppSelector } from "src/redux/hooks";
 import AvailableRequest from "src/screens/Request/AvailableRequest";
+import CouponCards from "src/screens/Profile/CouponCards";
 
 
 const Stack = createStackNavigator();
@@ -104,6 +105,7 @@ const StackNavigation = () => {
         <Stack.Screen name="Bank Edit" component={BankEdit}/>
         <Stack.Screen name="History" component={History}/>
         <Stack.Screen name="Available Request" component={AvailableRequest}/>
+        <Stack.Screen name="Coupon Cards" component={CouponCards}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );

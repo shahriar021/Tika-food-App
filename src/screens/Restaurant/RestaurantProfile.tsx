@@ -11,7 +11,8 @@ const RestaurantProfile = () => {
 
     const navigation = useNavigation()
 
-    const [isPopular, setIsPopular] = useState(true)
+    const [isPopular, setIsPopular] = useState("")
+    const categoryArray = ["Popular", "All", "Burger", "Pizza", "Chinese", "Baguette"]
 
     return (
         <View className='flex-1 relative'>
@@ -23,91 +24,68 @@ const RestaurantProfile = () => {
             </TouchableOpacity>
             <View className='flex-1 bg-white p-3'>
                 <Text className='mt-2 text-start text-black font-robotoBold text-xl'>Urban Palate</Text>
-                {/* <View className='flex-row  gap-2'>
-                    <View className='flex-col items-start  mt-3 w-1/2 gap-2'>
-                    <View className='flex-row gap-2 items-center'>
-                        <Image source={require("../../../assets/restroIcon/Message_light.png")} style={{width:20,height:20}}/>
-                        <Text>(605) 955-126</Text>
-                    </View>
-                    <View className='flex-row gap-2 items-center'>
-                        <Image source={require("../../../assets/restroIcon/Phone_light.png")} style={{width:20,height:20}}/>
-                        <Text>gmai.com</Text>
-                    </View>
-                 </View>
-                <View className='flex-col items-right  mt-3 w-1/2 gap-2 bg-red-500 self-end items-start '>
-                    <View className='flex-row gap-2 items-center'>
-                        <Image source={require("../../../assets/restroIcon/elements.png")} style={{width:20,height:20}}/>
-                        <Text>Mon-Sun</Text>
-                    </View>
-                    <View className='flex-row gap-2 items-center'>
-                        <Image source={require("../../../assets/restroIcon/clock-01.png")} style={{width:20,height:20}}/>
-                        <Text>8.00 pm 10.00 pm</Text>
-                    </View>
-                 </View>
-                 </View> */}
 
-                <View style={{height:height*0.25}}>
+
+                <View style={{ height: height * 0.25 }}>
                     <View className="flex-row w-full mt-3 gap-2 items-center">
-                    {/* Left Column */}
-                    <View className="flex-col w-1/2 gap-2">
-                        <View className="flex-row items-center gap-2">
-                            <Image
-                                source={require("../../../assets/restroIcon/Message_light.png")}
-                                style={{ width: 20, height: 20 }}
-                            />
-                            <Text>(605) 955-126</Text>
+                        {/* Left Column */}
+                        <View className="flex-col w-1/2 gap-2">
+                            <View className="flex-row items-center gap-2">
+                                <Image
+                                    source={require("../../../assets/restroIcon/Message_light.png")}
+                                    style={{ width: 20, height: 20 }}
+                                />
+                                <Text>(605) 955-126</Text>
+                            </View>
+                            <View className="flex-row items-center gap-2">
+                                <Image
+                                    source={require("../../../assets/restroIcon/Phone_light.png")}
+                                    style={{ width: 20, height: 20 }}
+                                />
+                                <Text>gmail.com</Text>
+                            </View>
                         </View>
-                        <View className="flex-row items-center gap-2">
-                            <Image
-                                source={require("../../../assets/restroIcon/Phone_light.png")}
-                                style={{ width: 20, height: 20 }}
-                            />
-                            <Text>gmail.com</Text>
+
+                        {/* Right Column */}
+                        <View className="flex-col w-1/2 ml-auto gap-2 items-start">
+                            <View className="flex-row items-center gap-2">
+                                <Image
+                                    source={require("../../../assets/restroIcon/elements.png")}
+                                    style={{ width: 20, height: 20 }}
+                                />
+                                <Text>Mon-Sun</Text>
+                            </View>
+                            <View className="flex-row items-center gap-2">
+                                <Image
+                                    source={require("../../../assets/restroIcon/clock-01.png")}
+                                    style={{ width: 20, height: 20 }}
+                                />
+                                <Text>8.00 pm - 10.00 pm</Text>
+                            </View>
                         </View>
                     </View>
 
-                    {/* Right Column */}
-                    <View className="flex-col w-1/2 ml-auto gap-2 items-start">
-                        <View className="flex-row items-center gap-2">
-                            <Image
-                                source={require("../../../assets/restroIcon/elements.png")}
-                                style={{ width: 20, height: 20 }}
-                            />
-                            <Text>Mon-Sun</Text>
-                        </View>
-                        <View className="flex-row items-center gap-2">
-                            <Image
-                                source={require("../../../assets/restroIcon/clock-01.png")}
-                                style={{ width: 20, height: 20 }}
-                            />
-                            <Text>8.00 pm - 10.00 pm</Text>
-                        </View>
+                    <View className='flex-row items-center mt-3'>
+                        <Entypo name="dot-single" size={24} color="black" />
+                        <Text className='w-[95%]'>Happy Hour: 5:00 – 7:00 PM | 2-for-1 Cocktails</Text>
+                    </View>
+                    <View className='flex-row mt-3 items-center'>
+                        <Entypo name="dot-single" size={24} color="black" />
+                        <Text className='w-[95%]'>NikoSafe Verified: Scan QR for Safe Entry Certified by xxxx Health Dept, 2025</Text>
+                    </View>
+
+
+                    <Text className='mt-2 text-start text-black font-robotoBold text-xl'>Menu<Text className='text-gray-300'>(List of Dishes)</Text></Text>
+
+                    <View className='flex-row gap-5 mt-3'>
+                        {categoryArray.map(item => <TouchableOpacity onPress={() => setIsPopular(item)}>
+                            <Text className={`${isPopular == item ? "underline text-[#C21A1E]" : "text-black"} font-robotoRegular`}>{item}</Text>
+                        </TouchableOpacity>)}
+
                     </View>
                 </View>
 
-                <View className='flex-row items-center mt-3'>
-                    <Entypo name="dot-single" size={24} color="black" />
-                    <Text className='w-[95%]'>Happy Hour: 5:00 – 7:00 PM | 2-for-1 Cocktails</Text>
-                </View>
-                <View className='flex-row mt-3 items-center'>
-                    <Entypo name="dot-single" size={24} color="black" />
-                    <Text className='w-[95%]'>NikoSafe Verified: Scan QR for Safe Entry Certified by xxxx Health Dept, 2025</Text>
-                </View>
-                
-
-                <Text className='mt-2 text-start text-black font-robotoBold text-xl'>Menu<Text className='text-gray-300'>(List of Dishes)</Text></Text>
-
-                <View className='flex-row gap-5 mt-3'>
-                    <TouchableOpacity onPress={() => setIsPopular(true)}>
-                        <Text className={`${isPopular ? "underline text-[#C21A1E]" : "text-black"} font-robotoRegular`}>Popular</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setIsPopular(false)}>
-                        <Text className={`${!isPopular ? "underline text-[#C21A1E]" : "text-black"} font-robotoRegular`}>All</Text>
-                    </TouchableOpacity>
-                </View>
-                </View>
-
-                <View className='flex-1 items-center mt-4'>
+                <View className='flex-1 items-center mt-2'>
                     {isPopular ? <PopularItemsList /> : <AllItemList />}
                 </View>
             </View>
