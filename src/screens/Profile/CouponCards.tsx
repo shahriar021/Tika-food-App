@@ -1,8 +1,35 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, Image, TouchableOpacity, useWindowDimensions } from 'react-native'
+import React, { useLayoutEffect } from 'react'
 import { scale, verticalScale } from 'react-native-size-matters'
+import { useNavigation } from '@react-navigation/native';
+import { Entypo } from '@expo/vector-icons';
 
 const CouponCards = () => {
+
+    const navigation = useNavigation();
+    const { width, height } = useWindowDimensions()
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: "Coupon Card",
+            headerStyle: {
+                backgroundColor: "white",
+                elevation: 0, // for Android
+                shadowOpacity: 0, // for iOS
+                borderBottomWidth: 0, // for iOS
+            },
+            headerTintColor: "black",
+            headerTitleAlign: "center",
+            headerLeft: () => (
+                <TouchableOpacity className='p-1' onPress={() => navigation.goBack()}>
+                    <View className='w-[35px] h-[35px] border border-red-100 items-center justify-center rounded-full' >
+                        <Entypo name="chevron-small-left" size={24} color="red" />
+                    </View>
+                </TouchableOpacity>
+            )
+        })
+    }, [navigation])
+
     return (
         <View className='bg-white flex-1 p-4 items-center' >
 
@@ -43,7 +70,7 @@ const CouponCards = () => {
 
                 <View className='flex-1 ml-9 items-center'> <Text className='font-bold' style={{ color: "#00B047", fontSize: 24 }}>Free Delivery</Text></View>
                 <View className='flex-1 mr-9 ml-3'>
-                    <Text className='text-[#727272]'>Use this voucher to get free delivery on your next order.</Text>
+                    <Text className='text-[#5a5a5a]'>Use this voucher to get free delivery on your next order.</Text>
                     <Text className='text-[#000000] mt-1 font-bold'>CODE:  FREESHIP2025</Text>
                     <TouchableOpacity className='flex-row items-center gap-2 mt-3'>
                         <Text className='text-[#C21A1E]'>Copy code</Text>
@@ -100,7 +127,7 @@ const CouponCards = () => {
 
             {/*  */}
 
-           <View className='overflow-hidden flex-row  mb-3'
+            <View className='overflow-hidden flex-row  mb-3'
                 style={{
                     backgroundColor: "#e4e6eb",
                     width: scale(330),
@@ -136,7 +163,7 @@ const CouponCards = () => {
 
                 <View className='flex-1 ml-9 items-center'> <Text className='font-bold' style={{ color: "#00B047", fontSize: 24 }}>25 %</Text></View>
                 <View className='flex-1 mr-9 ml-3'>
-                    <Text className='text-[#727272]'>Use this voucher to get 25% descount on your next order.</Text>
+                    <Text className='text-[#5a5a5a]'>Use this voucher to get 25% descount on your next order.</Text>
                     <Text className='text-[#000000] mt-1 font-bold'>CODE:  FREESHIP2025</Text>
                     <TouchableOpacity className='flex-row items-center gap-2 mt-3'>
                         <Text className='text-[#C21A1E]'>Copy code</Text>
