@@ -36,6 +36,7 @@ import { ActivityIndicator } from "react-native";
 import { useAppSelector } from "src/redux/hooks";
 import AvailableRequest from "src/screens/Request/AvailableRequest";
 import CouponCards from "src/screens/Profile/CouponCards";
+import ViewMyComplain from "src/screens/Profile/ViewMyComplain/ViewMyComplain";
 
 
 const Stack = createStackNavigator();
@@ -106,6 +107,7 @@ const StackNavigation = () => {
         <Stack.Screen name="History" component={History}/>
         <Stack.Screen name="Available Request" component={AvailableRequest}/>
         <Stack.Screen name="Coupon Cards" component={CouponCards}/>
+        <Stack.Screen name="View My Complains" component={ViewMyComplain}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );
