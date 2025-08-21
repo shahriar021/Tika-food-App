@@ -24,6 +24,12 @@ export const profileItems = [
     type:'user'
   },
   {
+    icon: require("../../assets/restroIcon/location-03.png"),
+    label: "Report an Issue",
+    route:"Report",
+    type:'user'
+  },
+  {
     icon: require("../../assets/restroIcon/Info_alt_light.png"),
     label: "About Us",
     route:"about",

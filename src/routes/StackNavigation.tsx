@@ -37,6 +37,7 @@ import { useAppSelector } from "src/redux/hooks";
 import AvailableRequest from "src/screens/Request/AvailableRequest";
 import CouponCards from "src/screens/Profile/CouponCards";
 import ViewMyComplain from "src/screens/Profile/ViewMyComplain/ViewMyComplain";
+import Report from "src/screens/Profile/Report/Report";
 
 
 const Stack = createStackNavigator();
@@ -98,7 +99,6 @@ const StackNavigation = () => {
 
         <Stack.Screen name="Delivery Request" component={DeliveryRequestView}/>
         <Stack.Screen name="Map" options={{headerShown:false}} component={MapScreen}/>
-        <Stack.Screen name="Earning List View" component={EarningListView}/>
         
         <Stack.Screen name="Withdraw" component={Withdraw}/>
         <Stack.Screen name="Withdraw Request" component={WithdrawRequest}/>
@@ -108,6 +108,7 @@ const StackNavigation = () => {
         <Stack.Screen name="Available Request" component={AvailableRequest}/>
         <Stack.Screen name="Coupon Cards" component={CouponCards}/>
         <Stack.Screen name="View My Complains" component={ViewMyComplain}/>
+        <Stack.Screen name="Report" component={Report}/>
       </Stack.Navigator>
     // </NavigationContainer>
   );
