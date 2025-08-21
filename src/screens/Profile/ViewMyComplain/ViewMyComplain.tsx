@@ -9,6 +9,7 @@ const ViewMyComplain = () => {
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions()
     const [showModal,setShowModal]=useState(false);
+    const [data,setData]=useState("")
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -31,14 +32,16 @@ const ViewMyComplain = () => {
         })
     }, [navigation])
 
-    const handleModal=()=>{
+    const handleModal=(txt)=>{
         setShowModal(true)
+        setData(txt);
+      console.log(txt)
     }
 
   return (
     <View className='p-3'>
       
-      <TouchableOpacity className='border border-[#0000001A] p-2 rounded-lg mb-2' onPress={handleModal}>
+      <TouchableOpacity className='border border-[#0000001A] p-2 rounded-lg mb-2' onPress={()=>handleModal("restaurant")}>
         <View className='flex-row justify-between'>
             <Text className='text-xl font-robotoBold'>Missing Items</Text>
             <Text className='text-[#FE724C] border border-[#FE724C] rounded-2xl p-2'>Submitted</Text>
@@ -46,7 +49,7 @@ const ViewMyComplain = () => {
         <Text className='text-xs'>Restaurant name:  Red n hot pizza</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity className='border border-[#0000001A] p-2 rounded-lg mb-2'>
+      <TouchableOpacity className='border border-[#0000001A] p-2 rounded-lg mb-2' onPress={()=>handleModal("rider")}>
         <View className='flex-row justify-between'>
             <Text className='text-xl font-robotoBold'>Missing Items</Text>
             <Text className='text-[#3B55C4] border border-[#3B55C4] rounded-2xl p-2'>In review</Text>
@@ -54,7 +57,7 @@ const ViewMyComplain = () => {
         <Text className='text-xs'>Rider ID: #FDX12345</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity className='border border-[#0000001A] p-2 rounded-lg'>
+      <TouchableOpacity className='border border-[#0000001A] p-2 rounded-lg' onPress={()=>handleModal("res$rider")}>
         <View className='flex-row justify-between'>
             <Text className='text-xl font-robotoBold'>Missing Items</Text>
             <Text className='text-[#19CC49] border border-[#19CC49] rounded-2xl p-2'>Resolved</Text>
@@ -63,7 +66,7 @@ const ViewMyComplain = () => {
         <Text className='text-xs'>Rider ID: #FDX12345</Text>
       </TouchableOpacity>
 
-      <ViewComplainModal visible={showModal} onClose={()=>setShowModal(false)}/>
+      <ViewComplainModal visible={showModal} onClose={()=>setShowModal(false)} data={data}/>
 
     </View>
   )
