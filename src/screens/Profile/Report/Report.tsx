@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, useWindowDimensions } from 'react-native'
+import { View, Text, TouchableOpacity, useWindowDimensions, Alert } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Entypo, FontAwesome } from '@expo/vector-icons';
@@ -9,7 +9,7 @@ const Report = () => {
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions();
     const [showModal, setShowModal] = useState(false);
-    const [option,setOptions]=useState("")
+    const [option, setOptions] = useState<string[]>([])
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -32,18 +32,29 @@ const Report = () => {
         })
     }, [navigation])
 
-    const handleReport = () => {
-        setShowModal(true)
+    const handleOption = (txt) => {
+        setOptions((prev) => option.includes(txt) ? option.filter(item => item != txt) : [...prev, txt]);
+
     }
+
+    const handleReport = () => {
+        if (option.length===0) {
+            Alert.alert("Select at least one option!")
+            return;
+        }
+            setShowModal(true)
+    }
+
+    console.log(option)
 
     return (
         <View className='flex-1 p-3'>
-            <TouchableOpacity className='flex-row items-center gap-2 border border-[#0000001A] p-3 rounded-xl mt-3' onPress={()=>setOptions("Report Dish")}>
-                <FontAwesome name="circle" size={24} color="black" />
+            <TouchableOpacity className='flex-row items-center gap-2 border border-[#0000001A] p-3 rounded-xl mt-3' onPress={() => handleOption("Report Dish")}>
+                <FontAwesome name="circle" size={24} color={option.includes("Report Dish") ? "#BA1414" : "#BA14141A"} />
                 <Text>Report Dish</Text>
             </TouchableOpacity>
-            <TouchableOpacity className='flex-row items-center gap-2 border border-[#0000001A] p-3 rounded-xl mt-3'  onPress={()=>setOptions("Report Delivery Person")}>
-                <FontAwesome name="circle" size={24} color="#BA14141A" />
+            <TouchableOpacity className='flex-row items-center gap-2 border border-[#0000001A] p-3 rounded-xl mt-3' onPress={() => handleOption("Report Delivery Person")}>
+                <FontAwesome name="circle" size={24} color={option.includes("Report Delivery Person") ? "#BA1414" : "#BA14141A"} />
                 <Text>Report Delivery Person</Text>
             </TouchableOpacity>
             <View className="items-center mb-2">
@@ -61,7 +72,7 @@ const Report = () => {
                 </TouchableOpacity>
             </View>
 
-            <ReportModal visible={showModal} onClose={() => setShowModal(false)} />
+            <ReportModal visible={showModal} onClose={() => setShowModal(false)} data={option} />
         </View>
     )
 }
