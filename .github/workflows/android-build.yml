@@ -1,0 +1,43 @@
+name: Raw Android Build
+on:
+  push:
+    branches: [ main ] # Triggered whenever you push to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Clone Code
+        uses: actions/checkout@v4
+
+      - name: 2. Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 3. Install NPM Packages
+        run: npm install
+
+      - name: 4. Generate Native Android Folder
+        # This is the "Raw" step: Expo creates the 'android' folder for us
+        run: npx expo prebuild --platform android
+
+      - name: 5. Setup Java (Android Engine)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: 6. Build the APK (Raw Gradle)
+        # We enter the android folder and run the actual Android build tool
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: 7. Store the APK
+        # This saves the file so you can download it from GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-app-build
+          path: android/app/build/outputs/apk/debug/app-debug.apk
