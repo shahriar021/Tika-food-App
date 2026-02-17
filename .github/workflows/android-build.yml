@@ -1,59 +1,77 @@
-name: Raw Android Build
+name: CI/CD Android Build
+
 on:
   push:
-    branches: [ main ] # Triggered whenever you push to main
+    branches: [ main ]  # Trigger whenever you push to main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: 1. Clone Code
+      # 1️⃣ Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 2. Setup Node
+      # 2️⃣ Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: 3. Install NPM Packages
+      # 2.5️⃣ Install EAS CLI
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      # 3️⃣ Install dependencies
+      - name: Install NPM Packages
         run: npm install
 
-      - name: 4. Generate Native Android Folder
-        # This is the "Raw" step: Expo creates the 'android' folder for us
+      # 4️⃣ Prebuild Android folder (Expo)
+      - name: Generate Native Android Folder
         run: npx expo prebuild --platform android
 
-      - name: 5. Setup Java (Android Engine)
+      # 5️⃣ Setup Java
+      - name: Setup Java (Android Engine)
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: 6. Build the APK (Raw Gradle)
-        # We enter the android folder and run the actual Android build tool
+      # 6️⃣ Decode keystore from secrets
+      - name: Decode Keystore
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android.jks
+
+      # 7️⃣ Configure EAS credentials
+      - name: Configure EAS credentials
         run: |
-          cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          eas credentials:android --non-interactive \
+            --keystore-path android.jks \
+            --keystore-password ${{ secrets.ANDROID_KEYSTORE_PASSWORD }} \
+            --key-alias ${{ secrets.ANDROID_KEY_ALIAS }} \
+            --key-password ${{ secrets.ANDROID_KEY_PASSWORD }}
 
-      - name: 7. Store the APK
-        # This saves the file so you can download it from GitHub
-        uses: actions/upload-artifact@v4
-        with:
-          name: my-app-build
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+      # 8️⃣ Build signed release APK with EAS
+      - name: Build Release APK
+        run: eas build --platform android --profile production --non-interactive
 
-      - name: 8. Install Firebase CLI
+      # 9️⃣ Install Firebase CLI
+      - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: 9. Create Firebase Credentials File
+      # 🔟 Create Firebase credentials file
+      - name: Create Firebase Credentials File
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
 
-      - name: 10. Export Google Credentials
+      # 1️⃣1️⃣ Export Google credentials
+      - name: Export Google Credentials
         run: echo "GOOGLE_APPLICATION_CREDENTIALS=firebase-key.json" >> $GITHUB_ENV
 
-      - name: 11. Distribute APK to Firebase
+      # 1️⃣2️⃣ Distribute APK to Firebase App Distribution
+      - name: Distribute APK to Firebase
         run: |
-          firebase appdistribution:distribute android/app/build/outputs/apk/debug/app-debug.apk \
+          # Use the latest generated APK from EAS output
+          APK_PATH=$(ls ./dist/*.apk | head -n 1)
+          firebase appdistribution:distribute $APK_PATH \
           --app 1:773349551035:android:152ae5a7db9ef1aff3729e \
           --groups "testers"
-    
