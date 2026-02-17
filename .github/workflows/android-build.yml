@@ -7,9 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,16 +14,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20 # Fixed: Updated to 20
 
       - name: Install EAS CLI
-        run: npm install -g eas-cli@latest
+        run: npm install -g eas-cli
 
       - name: Install dependencies
         run: npm install
-
-      - name: Generate Native Android Folder
-        run: npx expo prebuild --platform android
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -34,24 +28,25 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Decode Android keystore from GitHub secret
+      - name: Decode Android keystore
         run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android.jks
 
-      - name: Build signed release APK with EAS
-        run: eas build --platform android --profile production --non-interactive
+      # This creates the android folder so we can build it here
+      - name: Generate Native Android Folder
+        run: npx expo prebuild --platform android
+
+      # IMPORTANT: Use --local and --output to keep the file here for Firebase
+      - name: Build APK Locally
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --platform android --profile production --non-interactive --local --output=./app-release.apk
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Create Firebase credentials file
-        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
-
-      - name: Export Google credentials
-        run: echo "GOOGLE_APPLICATION_CREDENTIALS=firebase-key.json" >> $GITHUB_ENV
-
-      - name: Distribute APK to Firebase
+      - name: Distribute to Firebase
         run: |
-          APK_PATH=$(ls ./dist/*.apk | head -n 1)
-          firebase appdistribution:distribute $APK_PATH \
-          --app 1:773349551035:android:152ae5a7db9ef1aff3729e \
-          --groups "testers"
+          firebase appdistribution:distribute ./app-release.apk \
+          --app "1:773349551035:android:152ae5a7db9ef1aff3729e" \
+          --groups "testers" \
+          --token "${{ secrets.FIREBASE_TOKEN }}"
