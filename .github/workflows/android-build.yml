@@ -39,8 +39,8 @@ jobs:
           java-version: '17'
 
       # 6️⃣ Login to Expo (non-interactive)
-      - name: Login to Expo
-        run: eas login --token ${{ secrets.EXPO_TOKEN }}
+      - name: Set Expo Token
+        run: echo "EAS_TOKEN=${{ secrets.EXPO_TOKEN }}" >> $GITHUB_ENV
 
       # 7️⃣ Build signed release APK with EAS
       - name: Build Release APK
