@@ -33,14 +33,14 @@ jobs:
         run: npm install
 
       - name: Build on Expo Cloud
-        # Note: No --output here, just the build command
         run: |
           eas build --platform android --profile production --non-interactive --wait
 
       - name: Download APK from Expo
-        # This grabs the result of the build we just finished
+        # FIX: We remove --profile and --latest which are not supported here
+        # Instead, we just target the platform. EAS knows to grab the one we just made.
         run: |
-          eas build:download --platform android --profile production --latest --output=./app-release.apk
+          eas build:download --platform android --output=./app-release.apk
 
       - name: Distribute to Firebase
         run: |
