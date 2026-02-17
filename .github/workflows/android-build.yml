@@ -55,6 +55,18 @@ jobs:
       - name: Build APK Locally
         run: eas build --platform android --profile production --non-interactive --local --output=./app-release.apk
 
+      - name: Verify APK Validity
+        run: |
+          if [ -f "./app-release.apk" ]; then
+            echo "✅ APK created successfully."
+            ls -lh ./app-release.apk
+            # This checks if the file is a real zip/apk
+            file ./app-release.apk
+          else
+            echo "❌ APK was not created!"
+            exit 1
+          fi 
+
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
