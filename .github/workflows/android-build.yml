@@ -21,7 +21,7 @@ jobs:
 
       # 2.5️⃣ Install EAS CLI
       - name: Install EAS CLI
-        run: npm install -g eas-cli
+        run: npm install -g eas-cli@latest
 
       # 3️⃣ Install dependencies
       - name: Install NPM Packages
@@ -38,36 +38,27 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 6️⃣ Decode keystore from secrets
-      - name: Decode Keystore
-        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android.jks
+      # 6️⃣ Login to Expo (non-interactive)
+      - name: Login to Expo
+        run: eas login --token ${{ secrets.EXPO_TOKEN }}
 
-      # 7️⃣ Configure EAS credentials
-      - name: Configure EAS credentials
-        run: |
-          eas credentials:android --non-interactive \
-            --keystore-path android.jks \
-            --keystore-password ${{ secrets.ANDROID_KEYSTORE_PASSWORD }} \
-            --key-alias ${{ secrets.ANDROID_KEY_ALIAS }} \
-            --key-password ${{ secrets.ANDROID_KEY_PASSWORD }}
-
-      # 8️⃣ Build signed release APK with EAS
+      # 7️⃣ Build signed release APK with EAS
       - name: Build Release APK
         run: eas build --platform android --profile production --non-interactive
 
-      # 9️⃣ Install Firebase CLI
+      # 8️⃣ Install Firebase CLI
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      # 🔟 Create Firebase credentials file
+      # 9️⃣ Create Firebase credentials file
       - name: Create Firebase Credentials File
         run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
 
-      # 1️⃣1️⃣ Export Google credentials
+      # 🔟 Export Google credentials
       - name: Export Google Credentials
         run: echo "GOOGLE_APPLICATION_CREDENTIALS=firebase-key.json" >> $GITHUB_ENV
 
-      # 1️⃣2️⃣ Distribute APK to Firebase App Distribution
+      # 1️⃣1️⃣ Distribute APK to Firebase App Distribution
       - name: Distribute APK to Firebase
         run: |
           # Use the latest generated APK from EAS output
