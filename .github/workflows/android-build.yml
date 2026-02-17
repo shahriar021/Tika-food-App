@@ -17,18 +17,21 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      # This step handles the login using your EXPO_TOKEN
       - name: Setup Expo
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
+      # ADD THIS STEP: It ensures the 'eas' command actually exists
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
       - name: Install dependencies
         run: npm install
 
       - name: Build on Expo Cloud
-        # --local is GONE. We are now building on Expo's servers.
-        # --wait tells GitHub to stay active until the APK is ready.
         run: |
           eas build --platform android --profile production --non-interactive --wait --output=./app-release.apk
 
