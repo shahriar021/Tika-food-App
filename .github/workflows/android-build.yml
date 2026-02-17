@@ -41,3 +41,19 @@ jobs:
         with:
           name: my-app-build
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: 8. Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: 9. Create Firebase Credentials File
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
+
+      - name: 10. Export Google Credentials
+        run: echo "GOOGLE_APPLICATION_CREDENTIALS=firebase-key.json" >> $GITHUB_ENV
+
+      - name: 11. Distribute APK to Firebase
+        run: |
+          firebase appdistribution:distribute android/app/build/outputs/apk/debug/app-debug.apk \
+          --app 1:773349551035:android:152ae5a7db9ef1aff3729e \
+          --groups "testers"
+    
