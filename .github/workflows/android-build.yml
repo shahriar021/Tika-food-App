@@ -39,7 +39,7 @@ jobs:
       - name: Build APK Locally
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile production --non-interactive --local --output=./app-release.apk
+        run: eas build --platform android --profile production --non-interactive 
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
