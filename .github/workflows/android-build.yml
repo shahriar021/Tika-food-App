@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # THIS IS THE FIX for the Git error you just saw
+      EAS_NO_VCS: 1 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,13 +33,12 @@ jobs:
         run: npm install
 
       - name: Build on Expo Cloud
-        # 1. Removed --output (It's not allowed for cloud builds)
-        # 2. We still use --wait so the runner stays alive
+        # Note: No --output here, just the build command
         run: |
           eas build --platform android --profile production --non-interactive --wait
 
       - name: Download APK from Expo
-        # This command finds the latest successful build and downloads it
+        # This grabs the result of the build we just finished
         run: |
           eas build:download --platform android --profile production --latest --output=./app-release.apk
 
