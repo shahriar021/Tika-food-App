@@ -14,25 +14,22 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.smartsoftware.sas"
+      "bundleIdentifier": "com.sparktech.tikafood"
     },
     "android": {
-      "versionCode": 139,
+      "versionCode": 140,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ],
+      "permissions": ["android.permission.RECORD_AUDIO"],
       "useNextNotificationsApi": true,
       "package": "com.sparktech.tikafood",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyC4fsrgciACjhUacg9umvRHflrJJHFovdY"
         }
-      },
-      "buildType": "apk"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

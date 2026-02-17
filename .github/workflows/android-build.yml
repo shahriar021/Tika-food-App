@@ -1,4 +1,4 @@
-name: CI/CD Android Build
+name: CI/CD Android Cloud Build
 
 on:
   push:
@@ -7,10 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-      EAS_NO_VCS: 1 
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,48 +15,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
-      - name: Install EAS CLI
-        run: npm install -g eas-cli@latest
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
         run: npm install
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Decode Keystore
-        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android.jks
-
-      # Create the credentials.json that EAS looks for in 'local' mode
-      - name: Create Credentials JSON
+      - name: Build on Expo Cloud
+        # --local is GONE. We are now building on Expo's servers.
+        # --wait tells GitHub to stay active until the APK is ready.
         run: |
-          echo '{
-            "android": {
-              "keystore": {
-                "keystorePath": "android.jks",
-                "keystorePassword": "${{ secrets.KEYSTORE_PASSWORD }}",
-                "keyAlias": "${{ secrets.KEY_ALIAS }}",
-                "keyPassword": "${{ secrets.KEY_PASSWORD }}"
-              }
-            }
-          }' > credentials.json
-
-      - name: Generate Native Folder
-        run: npx expo prebuild --platform android
-
-      - name: Build APK Locally
-        # The --local flag uses the credentials.json we just created
-        run: eas build --platform android --profile production --non-interactive --local --output=./app-release.apk
-
-      - name: Verify APK Signature Presence
-        # If this fails, the APK is unsigned and Firebase will reject it
-        run: |
-          sudo apt-get update && sudo apt-get install -y aapt
-          aapt dump badging ./app-release.apk | grep package
+          eas build --platform android --profile production --non-interactive --wait --output=./app-release.apk
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
