@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      EAS_NO_VCS: 1 # Bypasses the Git errors you were seeing
 
     steps:
       - name: Checkout code
@@ -17,19 +18,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20 # Updated to 20 to support latest EAS CLI
+          node-version: 20
 
       - name: Install EAS CLI
         run: npm install -g eas-cli@latest
 
       - name: Install dependencies
         run: npm install
-
-      # FIX: This prevents the "git add" error you keep seeing
-      - name: Configure Git
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -40,19 +35,33 @@ jobs:
       - name: Decode Keystore
         run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > android.jks
 
-      # FIX: Added --local and --output so the file exists for the next step
-      - name: Build Release APK
+      # This creates the file that eas.json is looking for
+      - name: Create Credentials JSON
+        run: |
+          echo '{
+            "android": {
+              "keystore": {
+                "keystorePath": "android.jks",
+                "keystorePassword": "${{ secrets.KEYSTORE_PASSWORD }}",
+                "keyAlias": "${{ secrets.KEY_ALIAS }}",
+                "keyPassword": "${{ secrets.KEY_PASSWORD }}"
+              }
+            }
+          }' > credentials.json
+
+      - name: Generate Native Folder
+        run: npx expo prebuild --platform android
+
+      - name: Build APK Locally
         run: eas build --platform android --profile production --non-interactive --local --output=./app-release.apk
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Create Firebase credentials
-        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
-
-      - name: Distribute APK to Firebase
+      - name: Distribute to Firebase
         run: |
-          GOOGLE_APPLICATION_CREDENTIALS=firebase-key.json \
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=firebase-key.json
           firebase appdistribution:distribute ./app-release.apk \
-          --app 1:773349551035:android:152ae5a7db9ef1aff3729e \
+          --app "1:773349551035:android:152ae5a7db9ef1aff3729e" \
           --groups "testers"
