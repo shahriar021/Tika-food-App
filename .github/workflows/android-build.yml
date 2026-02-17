@@ -38,7 +38,7 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 6️⃣ Login to Expo (non-interactive)
+      # 6️⃣ Set Expo/EAS Token (non-interactive login)
       - name: Set Expo Token
         run: echo "EAS_TOKEN=${{ secrets.EXPO_TOKEN }}" >> $GITHUB_ENV
 
