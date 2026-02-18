@@ -37,10 +37,11 @@ jobs:
           eas build --platform android --profile production --non-interactive --wait
 
       - name: Download APK from Expo
-        # We use -o to specify the exact filename. 
-        # If -o still acts up, we just use the platform flag and move the file manually.
         run: |
-          eas build:download --platform android --output=app-release.apk
+          # 1. Download the latest build (EAS chooses the filename)
+          eas build:download --platform android --non-interactive
+          # 2. Rename whatever .apk file was just created to app-release.apk
+          mv *.apk app-release.apk
 
       - name: Distribute to Firebase
         run: |
