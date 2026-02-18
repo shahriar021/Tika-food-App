@@ -40,10 +40,15 @@ jobs:
 
       - name: Download APK from Expo
         run: |
-          # This line extracts the 36-character ID (like e3db2746-...) from the logs
+          # 1. Extract the Build ID
           BUILD_ID=$(grep -oE "[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}" build_output.log | head -n 1)
           echo "Found Build ID: $BUILD_ID"
-          eas build:download --id=$BUILD_ID --output=app-release.apk
+          
+          # 2. Download by ID (No other flags to avoid "Unexpected argument")
+          eas build:download --id=$BUILD_ID
+          
+          # 3. Rename whatever .apk file was just downloaded to app-release.apk
+          mv *.apk app-release.apk
 
       - name: Distribute to Firebase
         run: |
