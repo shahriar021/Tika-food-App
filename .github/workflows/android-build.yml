@@ -40,14 +40,17 @@ jobs:
 
       - name: Download APK from Expo
         run: |
-          # 1. Extract the Build ID
+          # 1. Get the ID
           BUILD_ID=$(grep -oE "[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}" build_output.log | head -n 1)
           echo "Found Build ID: $BUILD_ID"
           
-          # 2. Download by ID (No other flags to avoid "Unexpected argument")
+          # 2. Download with NO extra flags. This will save it as 'build-xxxx.apk'
           eas build:download --id=$BUILD_ID
           
-          # 3. Rename whatever .apk file was just downloaded to app-release.apk
+          # 3. List the files so we can see it in the logs (for debugging)
+          ls -R
+          
+          # 4. Rename whatever APK exists to app-release.apk
           mv *.apk app-release.apk
 
       - name: Distribute to Firebase
