@@ -24,12 +24,7 @@
       },
       "permissions": ["android.permission.RECORD_AUDIO"],
       "useNextNotificationsApi": true,
-      "package": "com.sparktech.tikafood",
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyC4fsrgciACjhUacg9umvRHflrJJHFovdY"
-        }
-      }
+      "package": "com.sparktech.tikafood"
     },
     "web": {
       "favicon": "./assets/favicon.png"
