@@ -33,22 +33,23 @@ jobs:
         run: npm install
 
       - name: Build on Expo Cloud
-        # We save the output to a file to find the Build ID automatically
         run: |
+          # The > build_output.log part is key—it captures the URL for the next step
           eas build --platform android --profile production --non-interactive --wait > build_output.log
           cat build_output.log
 
       - name: Download APK from Expo
         run: |
-          # 1. Download the latest finished Android build for this project
-          # We remove --id and --output to give the CLI zero reasons to complain
-          eas build:download --platform android --non-interactive
+          # This finds the specific .apk link in the logs we just saved
+          APK_URL=$(grep -oE "https://expo.dev/artifacts/eas/[a-zA-Z0-9.-]+\.apk" build_output.log | head -n 1)
           
-          # 2. List files to confirm the download worked
-          ls -lh
+          if [ -z "$APK_URL" ]; then
+            echo "Error: Could not find APK URL in logs. Check if the build actually produced an APK."
+            exit 1
+          fi
           
-          # 3. Rename the downloaded file to app-release.apk for Firebase
-          mv *.apk app-release.apk
+          echo "Downloading from: $APK_URL"
+          curl -L "$APK_URL" -o app-release.apk
 
       - name: Distribute to Firebase
         run: |
