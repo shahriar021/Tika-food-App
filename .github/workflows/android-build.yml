@@ -33,15 +33,17 @@ jobs:
         run: npm install
 
       - name: Build on Expo Cloud
+        # We save the output to a file to find the Build ID automatically
         run: |
-          eas build --platform android --profile production --non-interactive --wait
+          eas build --platform android --profile production --non-interactive --wait > build_output.log
+          cat build_output.log
 
       - name: Download APK from Expo
         run: |
-          # 1. Download the latest build (EAS chooses the filename)
-          eas build:download --platform android --non-interactive
-          # 2. Rename whatever .apk file was just created to app-release.apk
-          mv *.apk app-release.apk
+          # This line extracts the 36-character ID (like e3db2746-...) from the logs
+          BUILD_ID=$(grep -oE "[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}" build_output.log | head -n 1)
+          echo "Found Build ID: $BUILD_ID"
+          eas build:download --id=$BUILD_ID --output=app-release.apk
 
       - name: Distribute to Firebase
         run: |
