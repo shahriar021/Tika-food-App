@@ -1,9 +1,10 @@
-import { View, Text, TextInput, useWindowDimensions, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, useWindowDimensions, ScrollView, Image, TouchableOpacity, Button } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons'
 import { tableData } from '../Orders/demoData'
 import { tableEarData } from './demoEarningData'
+import * as Sentry from "@sentry/react-native";
 
 const EarningList = () => {
 
@@ -40,7 +41,16 @@ const EarningList = () => {
                     <Text  className='text-[#6B6B6B] font-robotoBold'>$22.05</Text>
                 </View>
             </View>
-
+                        <Button
+                            title="Verify Sentry Setup" 
+                            onPress={() => {
+                                // This sends a message without killing the app
+                                Sentry.captureMessage("Sentry is connected to Tika Food!");
+                                
+                                // This kills the app to test crash reporting
+                                throw new Error("Tika Food Manual Test Crash");
+                            }}
+                        />
         </View>
     )
 }

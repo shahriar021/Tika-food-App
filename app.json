@@ -22,7 +22,9 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["android.permission.RECORD_AUDIO"],
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
       "useNextNotificationsApi": true,
       "package": "com.sparktech.tikafood"
     },
@@ -51,7 +53,15 @@
           }
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "react-native",
+          "organization": "shaka-a1"
+        }
+      ]
     ],
     "extra": {
       "eas": {

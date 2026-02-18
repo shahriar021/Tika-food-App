@@ -33,6 +33,8 @@ jobs:
         run: npm install
 
       - name: Build on Expo Cloud
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
           # The > build_output.log part is key—it captures the URL for the next step
           eas build --platform android --profile production --non-interactive --wait > build_output.log
