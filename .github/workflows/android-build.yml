@@ -32,6 +32,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+    # ADD THIS HERE TO PROVE THE VERSION
+      - name: Debug Version Check
+        run: cat app.json | grep versionCode
+        
       - name: Build on Expo Cloud
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
