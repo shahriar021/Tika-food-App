@@ -35,9 +35,17 @@ jobs:
       - name: Build on Expo Cloud
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EAS_NO_VCS: 1
         run: |
-          # The > build_output.log part is key—it captures the URL for the next step
-          eas build --platform android --profile production --non-interactive --wait > build_output.log
+          # 1. Verify we are logged in
+          eas whoami
+          
+          # 2. Run the build and show output live
+          eas build --platform android --profile production --non-interactive --wait | tee build_output.log
+          
+          # 3. Double check the log file was created
+          ls -lh build_output.logandroid --profile production --non-interactive --wait > build_output.log
           cat build_output.log
 
       - name: Download APK from Expo
