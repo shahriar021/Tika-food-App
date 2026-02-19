@@ -38,15 +38,8 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
           EAS_NO_VCS: 1
         run: |
-          # 1. Verify we are logged in
-          eas whoami
-          
-          # 2. Run the build and show output live
-          eas build --platform android --profile production --non-interactive --wait | tee build_output.log
-          
-          # 3. Double check the log file was created
-          ls -lh build_output.logandroid --profile production --non-interactive --wait > build_output.log
-          cat build_output.log
+          # Use npx to ensure we use the local version of EAS
+          npx eas-cli build --platform android --profile production --non-interactive --wait | tee build_output.log
 
       - name: Download APK from Expo
         run: |
