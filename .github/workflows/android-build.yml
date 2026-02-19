@@ -42,24 +42,21 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
           EAS_NO_VCS: 1
         run: |
-          # Use npx to ensure we use the local version of EAS
-          npx eas-cli build --platform android --profile production --non-interactive --wait --clear-cache | tee build_output.log
+          # 1. Start the build and WAIT for it to finish
+          # If this fails on Expo, this step will now correctly turn RED on GitHub
+          npx eas-cli build --platform android --profile production --non-interactive --wait
 
       - name: Download APK from Expo
         run: |
-          # 1. Get the Build ID of the build we JUST started
-          # This ensures we don't grab the old 140 version
-          BUILD_ID=$(npx eas-cli build:list --platform android --limit 1 --status finished --json | jq -r '.[0].id')
-          
-          # 2. Get the specific URL for THAT Build ID
-          APK_URL=$(npx eas-cli build:view $BUILD_ID --json | jq -r '.artifacts.buildUrl')
+          # 2. Now that the build is FINISHED, get the URL for version 141
+          APK_URL=$(npx eas-cli build:list --platform android --status finished --limit 1 --json | jq -r '.[0].artifacts.buildUrl')
           
           if [ "$APK_URL" == "null" ] || [ -z "$APK_URL" ]; then
-            echo "Error: Could not find the artifact for Build $BUILD_ID"
+            echo "Error: Could not find the APK URL. Please check the Expo dashboard."
             exit 1
           fi
           
-          echo "Downloading version 141 from: $APK_URL"
+          echo "Downloading: $APK_URL"
           curl -L "$APK_URL" -o app-release.apk
 
       - name: Distribute to Firebase
