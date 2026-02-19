@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tika Food",
     "slug": "Tika-food",
-    "version": "1.2.34",
+    "version": "1.2.35",
     "orientation": "portrait",
     "icon": "./assets/tika.png",
     "userInterfaceStyle": "light",
@@ -17,7 +17,7 @@
       "bundleIdentifier": "com.sparktech.tikafood"
     },
     "android": {
-      "versionCode": 140,
+      "versionCode": 141,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
