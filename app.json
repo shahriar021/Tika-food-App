@@ -58,8 +58,8 @@
         "@sentry/react-native/expo",
         {
           "url": "https://sentry.io/",
-          "project": "react-native",
-          "organization": "shaka-a1"
+          "project": "Tika-food",
+          "organization": "shaka"
         }
       ]
     ],

@@ -43,11 +43,11 @@ jobs:
 
       - name: Download APK from Expo
         run: |
-          # This finds the specific .apk link in the logs we just saved
-          APK_URL=$(grep -oE "https://expo.dev/artifacts/eas/[a-zA-Z0-9.-]+\.apk" build_output.log | head -n 1)
+          # Ask EAS directly for the latest finished build's URL
+          APK_URL=$(npx eas-cli build:list --platform android --status finished --limit 1 --non-interactive --json | jq -r '.[0].artifacts.buildUrl')
           
-          if [ -z "$APK_URL" ]; then
-            echo "Error: Could not find APK URL in logs. Check if the build actually produced an APK."
+          if [ "$APK_URL" == "null" ] || [ -z "$APK_URL" ]; then
+            echo "Error: No finished build found. Check the Expo dashboard for errors."
             exit 1
           fi
           
