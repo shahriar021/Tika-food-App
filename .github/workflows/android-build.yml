@@ -43,7 +43,7 @@ jobs:
           EAS_NO_VCS: 1
         run: |
           # Use npx to ensure we use the local version of EAS
-          npx eas-cli build --platform android --profile production --non-interactive --wait | tee build_output.log
+          npx eas-cli build --platform android --profile production --non-interactive --wait --clear-cache | tee build_output.log
 
       - name: Download APK from Expo
         run: |

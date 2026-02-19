@@ -1,7 +1,10 @@
 {
+  "cli": {
+    "version": ">= 7.1.3",
+    "appVersionSource": "local"
+  },
   "build": {
     "production": {
-      "distribution": "store",
       "android": {
         "buildType": "apk"
       }
