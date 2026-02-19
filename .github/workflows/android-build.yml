@@ -47,15 +47,19 @@ jobs:
 
       - name: Download APK from Expo
         run: |
-          # Ask EAS directly for the latest finished build's URL
-          APK_URL=$(npx eas-cli build:list --platform android --status finished --limit 1 --non-interactive --json | jq -r '.[0].artifacts.buildUrl')
+          # 1. Get the Build ID of the build we JUST started
+          # This ensures we don't grab the old 140 version
+          BUILD_ID=$(npx eas-cli build:list --platform android --limit 1 --status finished --json | jq -r '.[0].id')
+          
+          # 2. Get the specific URL for THAT Build ID
+          APK_URL=$(npx eas-cli build:view $BUILD_ID --json | jq -r '.artifacts.buildUrl')
           
           if [ "$APK_URL" == "null" ] || [ -z "$APK_URL" ]; then
-            echo "Error: No finished build found. Check the Expo dashboard for errors."
+            echo "Error: Could not find the artifact for Build $BUILD_ID"
             exit 1
           fi
           
-          echo "Downloading from: $APK_URL"
+          echo "Downloading version 141 from: $APK_URL"
           curl -L "$APK_URL" -o app-release.apk
 
       - name: Distribute to Firebase
